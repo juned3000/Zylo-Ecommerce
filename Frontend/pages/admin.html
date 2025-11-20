@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Product Management | Zylo Ecommerce</title>
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/admin.css">
+  <link rel="stylesheet" href="../styles/rating.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="admin-layout">
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <!-- Simple Header -->
+      <header class="admin-header">
+        <div class="header-content">
+          <div class="header-left">
+            <h1 class="header-title"><i class="fas fa-cogs"></i> Admin Panel</h1>
+          </div>
+          <div class="header-right">
+            <button class="logout-btn" onclick="logout()">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <nav class="admin-nav">
+          <button class="nav-tab active" onclick="showTab('dashboard')">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+          </button>
+          <button class="nav-tab" onclick="showTab('orders')">
+            <i class="fas fa-shopping-bag"></i> Orders
+          </button>
+          <button class="nav-tab" onclick="showTab('products')">
+            <i class="fas fa-box"></i> Products
+          </button>
+          <button class="nav-tab" onclick="showTab('users')">
+            <i class="fas fa-users"></i> Users
+          </button>
+          <button class="nav-tab" onclick="showTab('coupons')">
+            <i class="fas fa-percent"></i> Coupons
+          </button>
+          <button class="nav-tab" onclick="showTab('reviews')">
+            <i class="fas fa-star"></i> Reviews
+          </button>
+          <button class="nav-tab" onclick="showTab('analytics')">
+            <i class="fas fa-chart-bar"></i> Analytics
+          </button>
+          <button class="nav-tab" onclick="showTab('settings')">
+            <i class="fas fa-cogs"></i> Settings
+          </button>
+        </nav>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        <!-- Alert Messages -->
+        <div id="alert" class="alert">
+          <span id="alert-message"></span>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+          <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+            <p class="page-subtitle">Welcome to your admin panel overview</p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title"><i class="fas fa-lightning-bolt"></i> Quick Actions</h2>
+            </div>
+            <div class="card-content">
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showTab('products'); showProductForm()">
+                  <i class="fas fa-plus"></i> Add Product
+                </button>
+                <button class="btn btn-secondary" onclick="showTab('orders')">
+                  <i class="fas fa-eye"></i> View Orders
+                </button>
+                <button class="btn btn-success" onclick="showTab('coupons'); showCouponForm()">
+                  <i class="fas fa-percent"></i> Create Coupon
+                </button>
+                <button class="btn btn-warning" onclick="showTab('analytics')">
+                  <i class="fas fa-chart-bar"></i> View Analytics
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders" class="tab-content">
+          <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-shopping-bag"></i> Order Management</h1>
+            <p class="page-subtitle">Manage and track customer orders</p>
+          </div>
+          <div class="section-header">
+            <h2><i class="fas fa-shopping-bag"></i> Orders</h2>
+            <div class="section-actions">
+              <div class="filters">
+                <select id="order-status-filter" class="form-select" onchange="filterOrders()">
+                  <option value="">All Orders</option>
+                  <option value="pending_payment">Pending Payment</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="processing">Processing</option>
+                  <option value="shipped">Shipped</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+              <button onclick="exportOrders()" class="btn btn-success">
+                <i class="fas fa-download"></i> Export
+              </button>
+            </div>
+          </div>
+          <div class="table-container">
+            <table class="table" id="orders-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body">
+                <tr><td colspan="7" class="loading">Loading orders...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Products Tab -->
+        <div id="products" class="tab-content">
+          <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-box"></i> Product Management</h1>
+            <p class="page-subtitle">Add, edit, and manage your products</p>
+          </div>
+          <div class="section-header">
+            <h2><i class="fas fa-box"></i> Products</h2>
+            <div class="section-actions">
+              <button onclick="showProductForm()" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Product
+              </button>
+              <button onclick="importProducts()" class="btn btn-secondary">
+                <i class="fas fa-upload"></i> Import
+              </button>
+              <button onclick="exportProducts()" class="btn btn-success">
+                <i class="fas fa-download"></i> Export
+              </button>
+            </div>
+          </div>
+      
+      <!-- Product Form Modal (Hidden by default) -->
+      <div id="product-form-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3><i class="fas fa-plus-circle"></i> <span id="product-form-title">Add New Product</span></h3>
+            <button class="modal-close" onclick="hideProductForm()">&times;</button>
+          </div>
+          <form id="product-form">
+            <input type="hidden" id="product-id" name="id">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="product-name">Product Name *</label>
+                <input type="text" id="product-name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="product-brand">Brand *</label>
+                <input type="text" id="product-brand" name="brand" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="product-price">Price (₹) *</label>
+                <input type="number" id="product-price" name="price" required min="1">
+              </div>
+              <div class="form-group">
+                <label for="product-category">Category *</label>
+                <select id="product-category" name="category" required>
+                  <option value="">Select Category</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Available Sizes</label>
+              <div class="sizes-group">
+                <label class="size-checkbox"><input type="checkbox" name="sizes" value="XS"> XS</label>
+                <label class="size-checkbox"><input type="checkbox" name="sizes" value="S"> S</label>
+                <label class="size-checkbox"><input type="checkbox" name="sizes" value="M"> M</label>
+                <label class="size-checkbox"><input type="checkbox" name="sizes" value="L"> L</label>
+                <label class="size-checkbox"><input type="checkbox" name="sizes" value="XL"> XL</label>
+                <label class="size-checkbox"><input type="checkbox" name="sizes" value="2XL"> 2XL</label>
+                <label class="size-checkbox"><input type="checkbox" name="sizes" value="3XL"> 3XL</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="product-image">Image URL</label>
+              <input type="url" id="product-image" name="image">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="product-stock">Stock Quantity</label>
+                <input type="number" id="product-stock" name="stock" min="0" value="100">
+              </div>
+              <div class="form-group">
+                <label for="product-status">Status</label>
+                <select id="product-status" name="status">
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                  <option value="out_of_stock">Out of Stock</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="product-rating">Average Rating (Read-only)</label>
+                <div class="admin-rating-display" id="product-rating-display">
+                  <div class="star-rating small">
+                    <i class="far fa-star star"></i>
+                    <i class="far fa-star star"></i>
+                    <i class="far fa-star star"></i>
+                    <i class="far fa-star star"></i>
+                    <i class="far fa-star star"></i>
+                  </div>
+                  <span class="rating-text small" id="rating-display-text">No ratings yet</span>
+                </div>
+                <input type="hidden" id="product-average-rating" name="averageRating" value="0">
+                <input type="hidden" id="product-total-ratings" name="totalRatings" value="0">
+              </div>
+              <div class="form-group">
+                <label for="manual-rating">Override Rating (Admin Only)</label>
+                <div class="admin-rating-input">
+                  <div class="admin-rating-stars" id="manual-rating-stars">
+                    <i class="far fa-star star" data-rating="1"></i>
+                    <i class="far fa-star star" data-rating="2"></i>
+                    <i class="far fa-star star" data-rating="3"></i>
+                    <i class="far fa-star star" data-rating="4"></i>
+                    <i class="far fa-star star" data-rating="5"></i>
+                  </div>
+                  <input type="hidden" id="manual-rating" name="manualRating" value="0">
+                  <span class="rating-text small">Use for demo/testing only</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="product-description">Description</label>
+              <textarea id="product-description" name="description" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="product-initial-rating">Initial Product Rating (Optional)</label>
+              <div class="admin-rating-input">
+                <div class="admin-rating-stars" id="product-initial-rating-stars">
+                  <i class="far fa-star star" data-rating="1"></i>
+                  <i class="far fa-star star" data-rating="2"></i>
+                  <i class="far fa-star star" data-rating="3"></i>
+                  <i class="far fa-star star" data-rating="4"></i>
+                  <i class="far fa-star star" data-rating="5"></i>
+                </div>
+                <input type="hidden" id="product-initial-rating" name="initialRating" value="0">
+                <div class="rating-help-text" style="font-size: 12px; color: #666; margin-top: 4px;">
+                  Set an initial rating for new products (customers can still rate and review)
+                </div>
+              </div>
+            </div>
+            <div class="modal-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> <span id="product-submit-text">Add Product</span>
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="hideProductForm()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="products-table-container">
+        <table class="admin-table" id="products-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Rating</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="products-table-body">
+            <tr><td colspan="9" class="loading">Loading products...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div id="users" class="tab-content">
+      <div class="section-header">
+        <h2><i class="fas fa-users"></i> User Management</h2>
+        <div class="section-actions">
+          <div class="search-box">
+            <input type="text" id="user-search" placeholder="Search users...">
+          </div>
+          <button onclick="exportUsers()" class="btn btn-success">
+            <i class="fas fa-download"></i> Export Users
+          </button>
+        </div>
+      </div>
+      <div class="users-table-container">
+        <table class="admin-table" id="users-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Joined</th>
+              <th>Orders</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="users-table-body">
+            <tr><td colspan="7" class="loading">Loading users...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Categories Tab -->
+    <div id="categories" class="tab-content">
+      <div class="section-header">
+        <h2><i class="fas fa-tags"></i> Category Management</h2>
+        <div class="section-actions">
+          <button onclick="showCategoryForm()" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Category
+          </button>
+        </div>
+      </div>
+      <div class="categories-tree" id="categories-tree">
+        <div class="loading">Loading categories...</div>
+      </div>
+    </div>
+
+    <!-- Coupons Tab -->
+    <div id="coupons" class="tab-content">
+      <div class="page-header">
+        <h1 class="page-title"><i class="fas fa-percent"></i> Coupon Management</h1>
+        <p class="page-subtitle">Create and manage discount coupons for your store</p>
+      </div>
+      <div class="section-header">
+        <h2><i class="fas fa-percent"></i> Coupons</h2>
+        <div class="section-actions">
+          <button onclick="showCouponForm()" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Create Coupon
+          </button>
+        </div>
+      </div>
+      
+      <!-- Coupon Form Modal -->
+      <div id="coupon-form-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3><i class="fas fa-percent"></i> <span id="coupon-form-title">Create New Coupon</span></h3>
+            <button class="modal-close" onclick="hideCouponForm()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form id="coupon-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="coupon-code">Coupon Code *</label>
+                <input type="text" id="coupon-code" name="code" class="form-input" required style="text-transform: uppercase;">
+              </div>
+              <div class="form-group">
+                <label for="coupon-description">Description *</label>
+                <input type="text" id="coupon-description" name="description" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="discount-type">Discount Type *</label>
+                <select id="discount-type" name="discountType" class="form-select" required>
+                  <option value="percentage">Percentage</option>
+                  <option value="fixed">Fixed Amount</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="discount-value">Discount Value *</label>
+                <input type="number" id="discount-value" name="discountValue" class="form-input" required min="0">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="min-order-value">Minimum Order Value (₹)</label>
+                <input type="number" id="min-order-value" name="minimumOrderValue" class="form-input" min="0" value="0">
+              </div>
+              <div class="form-group">
+                <label for="max-discount">Maximum Discount (₹)</label>
+                <input type="number" id="max-discount" name="maximumDiscount" class="form-input" min="0">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="valid-from">Valid From *</label>
+                <input type="datetime-local" id="valid-from" name="validFrom" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="valid-to">Valid To *</label>
+                <input type="datetime-local" id="valid-to" name="validTo" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="usage-limit">Usage Limit (Leave empty for unlimited)</label>
+              <input type="number" id="usage-limit" name="usageLimit" class="form-input" min="1">
+            </div>
+              <div class="modal-actions">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save"></i> Create Coupon
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="hideCouponForm()">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <div class="coupons-table-container">
+        <table class="admin-table" id="coupons-table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Value</th>
+              <th>Valid Period</th>
+              <th>Usage</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="coupons-table-body">
+            <tr><td colspan="8" class="loading">Loading coupons...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Analytics Tab -->
+    <div id="analytics" class="tab-content">
+      <div class="page-header">
+        <h1 class="page-title"><i class="fas fa-chart-bar"></i> Analytics & Reports</h1>
+        <p class="page-subtitle">Comprehensive business analytics and insights</p>
+      </div>
+      
+      <!-- Analytics Dashboard -->
+      <div class="analytics-dashboard">
+        <!-- Analytics Controls -->
+        <div class="analytics-controls">
+          <div class="analytics-filters">
+            <div class="filter-group">
+              <label class="filter-label">Date Range:</label>
+              <select id="analytics-date-range" class="filter-select" onchange="handleAnalyticsFilter()">
+                <option value="7d">Last 7 Days</option>
+                <option value="30d" selected>Last 30 Days</option>
+                <option value="90d">Last 90 Days</option>
+                <option value="1y">Last Year</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Category:</label>
+              <select id="analytics-category" class="filter-select" onchange="handleAnalyticsFilter()">
+                <option value="">All Categories</option>
+                <option value="tshirt">T-Shirts</option>
+                <option value="shirts">Shirts</option>
+                <option value="jeans">Jeans</option>
+                <option value="jackets">Jackets</option>
+              </select>
+            </div>
+            <button class="refresh-btn" onclick="refreshAnalytics()">
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+          </div>
+        </div>
+        
+        <!-- Key Metrics Grid -->
+        <div class="metrics-grid">
+          <div class="metric-card revenue">
+            <div class="metric-header">
+              <h3 class="metric-title">Total Revenue</h3>
+              <div class="metric-icon">
+                <i class="fas fa-rupee-sign"></i>
+              </div>
+            </div>
+            <div class="metric-value">₹0</div>
+            <div class="metric-change neutral">
+              <span class="change-arrow">→</span>
+              <span>0% vs last month</span>
+            </div>
+          </div>
+          
+          <div class="metric-card orders">
+            <div class="metric-header">
+              <h3 class="metric-title">Total Orders</h3>
+              <div class="metric-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+            </div>
+            <div class="metric-value">0</div>
+            <div class="metric-change neutral">
+              <span class="change-arrow">→</span>
+              <span>0% vs last month</span>
+            </div>
+          </div>
+          
+          <div class="metric-card customers">
+            <div class="metric-header">
+              <h3 class="metric-title">Total Customers</h3>
+              <div class="metric-icon">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+            <div class="metric-value">0</div>
+            <div class="metric-change neutral">
+              <span class="change-arrow">→</span>
+              <span>0% vs last month</span>
+            </div>
+          </div>
+          
+          <div class="metric-card conversion">
+            <div class="metric-header">
+              <h3 class="metric-title">Conversion Rate</h3>
+              <div class="metric-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+            </div>
+            <div class="metric-value">0%</div>
+            <div class="metric-change neutral">
+              <span class="change-arrow">→</span>
+              <span>0% vs last month</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Charts Section -->
+        <div class="charts-section">
+          <!-- Primary Charts Row -->
+          <div class="charts-grid">
+            <!-- Sales Trend Chart -->
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3 class="chart-title"><i class="fas fa-chart-line"></i> Sales Trends</h3>
+                <span class="chart-period">Revenue & Orders Over Time</span>
+              </div>
+              <canvas id="sales-trend-chart" class="chart-canvas sales-trend-chart"></canvas>
+            </div>
+            
+            <!-- Top Products Chart -->
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3 class="chart-title"><i class="fas fa-trophy"></i> Top Products</h3>
+                <span class="chart-period">Best Selling Items</span>
+              </div>
+              <canvas id="top-products-chart" class="chart-canvas top-products-chart"></canvas>
+            </div>
+          </div>
+          
+          <!-- Secondary Charts Row -->
+          <div class="secondary-charts">
+            <!-- Revenue by Category Chart -->
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3 class="chart-title"><i class="fas fa-pie-chart"></i> Revenue by Category</h3>
+                <span class="chart-period">Sales Distribution</span>
+              </div>
+              <canvas id="revenue-category-chart" class="chart-canvas revenue-category-chart"></canvas>
+            </div>
+            
+            <!-- Customer Growth Chart -->
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3 class="chart-title"><i class="fas fa-user-plus"></i> Customer Growth</h3>
+                <span class="chart-period">New vs Total Customers</span>
+              </div>
+              <canvas id="customer-growth-chart" class="chart-canvas customer-growth-chart"></canvas>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Export Section -->
+        <div class="export-section">
+          <div class="export-header">
+            <h3 class="export-title"><i class="fas fa-download"></i> Export Reports</h3>
+            <div class="export-buttons">
+              <button class="export-btn pdf" onclick="exportAnalyticsPDF()">
+                <i class="fas fa-file-pdf"></i> Export PDF
+              </button>
+              <button class="export-btn excel" onclick="exportAnalyticsExcel()">
+                <i class="fas fa-file-excel"></i> Export Excel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Tab -->
+    <div id="reviews" class="tab-content">
+      <div class="page-header">
+        <h1 class="page-title"><i class="fas fa-star"></i> Review Management</h1>
+        <p class="page-subtitle">Manage customer reviews and ratings for your products</p>
+      </div>
+      
+      <!-- Reviews Stats Cards -->
+      <div class="metrics-grid review-metrics" style="grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2rem;">
+        <div class="metric-card review-stats">
+          <div class="metric-header">
+            <h3 class="metric-title">Total Reviews</h3>
+            <div class="metric-icon">
+              <i class="fas fa-comment"></i>
+            </div>
+          </div>
+          <div class="metric-value" id="total-reviews-count">0</div>
+          <div class="metric-change neutral">
+            <span class="change-arrow">→</span>
+            <span id="reviews-change">All time</span>
+          </div>
+        </div>
+        
+        <div class="metric-card rating-stats">
+          <div class="metric-header">
+            <h3 class="metric-title">Average Rating</h3>
+            <div class="metric-icon">
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="metric-value" id="average-rating">0.0</div>
+          <div class="metric-change neutral">
+            <span class="change-arrow">→</span>
+            <span id="rating-change">Overall rating</span>
+          </div>
+        </div>
+        
+        <div class="metric-card pending-stats">
+          <div class="metric-header">
+            <h3 class="metric-title">Pending</h3>
+            <div class="metric-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+          <div class="metric-value" id="pending-reviews">0</div>
+          <div class="metric-change warning">
+            <span class="change-arrow">!</span>
+            <span>Need attention</span>
+          </div>
+        </div>
+        
+        <div class="metric-card approved-stats">
+          <div class="metric-header">
+            <h3 class="metric-title">Approved</h3>
+            <div class="metric-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+          <div class="metric-value" id="approved-reviews">0</div>
+          <div class="metric-change positive">
+            <span class="change-arrow">✓</span>
+            <span>Published</span>
+          </div>
+        </div>
+        
+        <div class="metric-card reported-stats">
+          <div class="metric-header">
+            <h3 class="metric-title">Reported</h3>
+            <div class="metric-icon">
+              <i class="fas fa-flag"></i>
+            </div>
+          </div>
+          <div class="metric-value" id="reported-reviews">0</div>
+          <div class="metric-change negative">
+            <span class="change-arrow">⚠</span>
+            <span>Flagged</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bulk Actions Bar -->
+      <div id="bulk-actions-bar" class="bulk-actions-bar" style="display: none; background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #007bff;">
+        <div style="display: flex; justify-content: between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <span id="selected-count" style="font-weight: 600;">0 selected</span>
+            <button class="btn btn-small btn-success" onclick="bulkApproveReviews()">
+              <i class="fas fa-check"></i> Approve Selected
+            </button>
+            <button class="btn btn-small btn-warning" onclick="bulkRejectReviews()">
+              <i class="fas fa-times"></i> Reject Selected
+            </button>
+            <button class="btn btn-small btn-danger" onclick="bulkDeleteReviews()">
+              <i class="fas fa-trash"></i> Delete Selected
+            </button>
+          </div>
+          <button class="btn btn-small btn-secondary" onclick="clearSelection()">
+            Clear Selection
+          </button>
+        </div>
+      </div>
+      
+      <!-- Reviews Management Section -->
+      <div class="section-header">
+        <h2><i class="fas fa-star"></i> Customer Reviews</h2>
+        <div class="section-actions">
+          <div class="filters" style="display: flex; gap: 1rem; align-items: center;">
+            <select id="review-status-filter" class="form-select" onchange="filterReviews()" style="min-width: 150px;">
+              <option value="">All Reviews</option>
+              <option value="pending">Pending Approval</option>
+              <option value="approved">Approved</option>
+              <option value="reported">Reported</option>
+            </select>
+            <select id="review-rating-filter" class="form-select" onchange="filterReviews()" style="min-width: 120px;">
+              <option value="">All Ratings</option>
+              <option value="5">5 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="2">2 Stars</option>
+              <option value="1">1 Star</option>
+            </select>
+            <select id="review-sort" class="form-select" onchange="filterReviews()" style="min-width: 120px;">
+              <option value="createdAt">Date Created</option>
+              <option value="rating">Rating</option>
+              <option value="updatedAt">Last Updated</option>
+            </select>
+            <input type="text" id="review-search" class="form-input" placeholder="Search reviews..." onkeyup="searchReviews()" style="min-width: 200px;">
+          </div>
+          <button onclick="exportReviews()" class="btn btn-success">
+            <i class="fas fa-download"></i> Export
+          </button>
+        </div>
+      </div>
+      
+      <!-- Reviews Table -->
+      <div class="reviews-table-container">
+        <table class="admin-table" id="reviews-table">
+          <thead>
+            <tr>
+              <th style="width: 40px;">
+                <input type="checkbox" id="select-all-reviews" onchange="toggleAllReviews()">
+              </th>
+              <th>Review</th>
+              <th>Product</th>
+              <th>Customer</th>
+              <th>Rating</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="reviews-table-body">
+            <tr><td colspan="8" class="loading">Loading reviews...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Pagination -->
+      <div id="reviews-pagination" class="pagination" style="display: none; justify-content: center; align-items: center; gap: 1rem; margin-top: 2rem; padding: 1rem;">
+        <button onclick="changeReviewPage('prev')" id="reviews-prev-btn" class="btn btn-small btn-secondary">
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <span id="reviews-page-info">Page 1 of 1</span>
+        <button onclick="changeReviewPage('next')" id="reviews-next-btn" class="btn btn-small btn-secondary">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <!-- Review Details Modal -->
+      <div id="review-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 700px;">
+          <div class="modal-header">
+            <h3><i class="fas fa-comment"></i> Review Details</h3>
+            <button class="modal-close" onclick="hideReviewModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div id="review-details-content">
+              <!-- Review details will be loaded here -->
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-success" onclick="approveCurrentReview()" id="approve-review-btn">
+              <i class="fas fa-check"></i> Approve
+            </button>
+            <button type="button" class="btn btn-warning" onclick="rejectCurrentReview()" id="reject-review-btn">
+              <i class="fas fa-times"></i> Reject
+            </button>
+            <button type="button" class="btn btn-primary" onclick="showRespondModal()" id="respond-review-btn">
+              <i class="fas fa-reply"></i> Respond
+            </button>
+            <button type="button" class="btn btn-danger" onclick="deleteCurrentReview()" id="delete-review-btn">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="hideReviewModal()">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Admin Response Modal -->
+      <div id="admin-response-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+          <div class="modal-header">
+            <h3><i class="fas fa-reply"></i> Admin Response</h3>
+            <button class="modal-close" onclick="hideResponseModal()">&times;</button>
+          </div>
+          <form id="admin-response-form" onsubmit="submitAdminResponse(event)">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="admin-response-text">Your Response</label>
+                <textarea 
+                  id="admin-response-text" 
+                  name="message" 
+                  rows="4" 
+                  class="form-input" 
+                  placeholder="Enter your response to this review..." 
+                  required 
+                  maxlength="500">
+                </textarea>
+                <small class="form-help">Maximum 500 characters. This response will be visible to customers.</small>
+              </div>
+            </div>
+            <div class="modal-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Send Response
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="hideResponseModal()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Tab -->
+    <div id="settings" class="tab-content">
+      <div class="section-header">
+        <h2><i class="fas fa-cogs"></i> System Settings</h2>
+      </div>
+      
+      <div class="settings-sections">
+        <!-- Store Settings -->
+        <div class="settings-card">
+          <h3><i class="fas fa-store"></i> Store Settings</h3>
+          <form id="store-settings-form">
+            <div class="form-group">
+              <label for="store-name">Store Name</label>
+              <input type="text" id="store-name" name="storeName" value="Zylo Ecommerce">
+            </div>
+            <div class="form-group">
+              <label for="store-email">Store Email</label>
+              <input type="email" id="store-email" name="storeEmail" value="admin@zylo.com">
+            </div>
+            <div class="form-group">
+              <label for="store-phone">Store Phone</label>
+              <input type="tel" id="store-phone" name="storePhone">
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Save Store Settings
+            </button>
+          </form>
+        </div>
+        
+        <!-- Email Settings -->
+        <div class="settings-card">
+          <h3><i class="fas fa-envelope"></i> Email Settings</h3>
+          <form id="email-settings-form">
+            <div class="form-group">
+              <label for="smtp-host">SMTP Host</label>
+              <input type="text" id="smtp-host" name="smtpHost">
+            </div>
+            <div class="form-group">
+              <label for="smtp-port">SMTP Port</label>
+              <input type="number" id="smtp-port" name="smtpPort" value="587">
+            </div>
+            <div class="form-group">
+              <label for="smtp-username">SMTP Username</label>
+              <input type="text" id="smtp-username" name="smtpUsername">
+            </div>
+            <div class="form-group">
+              <label for="smtp-password">SMTP Password</label>
+              <input type="password" id="smtp-password" name="smtpPassword">
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Save Email Settings
+            </button>
+          </form>
+        </div>
+        
+        <!-- Tax Settings -->
+        <div class="settings-card">
+          <h3><i class="fas fa-percent"></i> Tax Settings</h3>
+          <form id="tax-settings-form">
+            <div class="form-group">
+              <label for="default-tax-rate">Default Tax Rate (%)</label>
+              <input type="number" id="default-tax-rate" name="defaultTaxRate" step="0.01" min="0" max="100">
+            </div>
+            <div class="form-group">
+              <label for="tax-inclusive">
+                <input type="checkbox" id="tax-inclusive" name="taxInclusive">
+                Prices are tax inclusive
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Save Tax Settings
+            </button>
+          </form>
+        </div>
+        
+        <!-- Shipping Settings -->
+        <div class="settings-card">
+          <h3><i class="fas fa-shipping-fast"></i> Shipping Settings</h3>
+          <form id="shipping-settings-form">
+            <div class="form-group">
+              <label for="free-shipping-threshold">Free Shipping Threshold (₹)</label>
+              <input type="number" id="free-shipping-threshold" name="freeShippingThreshold" min="0">
+            </div>
+            <div class="form-group">
+              <label for="standard-shipping-cost">Standard Shipping Cost (₹)</label>
+              <input type="number" id="standard-shipping-cost" name="standardShippingCost" min="0">
+            </div>
+            <div class="form-group">
+              <label for="express-shipping-cost">Express Shipping Cost (₹)</label>
+              <input type="number" id="express-shipping-cost" name="expressShippingCost" min="0">
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Save Shipping Settings
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <!-- Database Management -->
+      <div class="danger-zone">
+        <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+        <p>These actions cannot be undone. Please be very careful.</p>
+        <div class="danger-actions">
+          <button onclick="backupDatabase()" class="btn btn-warning">
+            <i class="fas fa-download"></i> Backup Database
+          </button>
+          <button onclick="clearAllData()" class="btn btn-danger">
+            <i class="fas fa-trash"></i> Clear All Data
+          </button>
+        </div>
+      </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/rating.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

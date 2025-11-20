@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Zylo Ecommerce</title>
+  <!-- Shared and page-specific styles -->
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/cart.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo"></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Page header -->
+  <section id="page-header" class="cart-page-header" aria-labelledby="cart-heading" role="region">
+    <h1 id="cart-heading"><strong>My Cart</strong></h1>
+  </section>
+
+  <main id="content" class="section-p1">
+    <!-- Cart content -->
+    <section class="cart-section">
+      <div class="cart-layout">
+        <!-- Cart items -->
+        <div class="cart-items-section">
+          <div class="cart-header">
+            <div class="cart-header-main">
+              <span class="items-title">Your Items</span>
+              <span id="cart-count" class="item-count">0 items</span>
+            </div>
+          </div>
+          
+          <!-- Add Item Link Below the Line -->
+          <div class="add-item-section">
+            <a href="shop.html" class="add-item-link" id="add-item-btn">
+              ADD ITEMS
+            </a>
+          </div>
+
+          <!-- Empty cart state -->
+          <div id="empty-cart" class="empty-state">
+            <div class="empty-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>Your cart is empty</h3>
+            <p>Add some items to your cart to get started</p>
+            <div class="empty-cart-actions">
+              <a href="shop.html" class="btn">Continue Shopping</a>
+            </div>
+          </div>
+
+          <!-- Cart items container -->
+          <div id="cart-items" class="cart-container">
+            <!-- Cart items will be populated here by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+          <!-- Coupon Section (Outside Order Summary) -->
+          <div class="coupon-section">
+            <!-- Best Offer Tag at Top -->
+            <div class="best-offer-tag">
+              <i class="fas fa-star icon"></i>
+              <span>Best offer unlocked!</span>
+            </div>
+            
+            <!-- Main Coupon Content -->
+            <div class="coupon-main-content">
+              <div class="coupon-text">
+                <div class="coupon-title">
+                  <span id="featured-coupon-code" class="coupon-code">OOF15</span>
+                  <span class="coupon-separator"> - </span>
+                  <span class="coupon-offer">Get EXTRA 15% Discount on all Products.</span>
+                </div>
+                <div class="coupon-subtitle">
+                  Coupon code - <span class="coupon-code-text">OOF15</span>
+                </div>
+              </div>
+              <button id="apply-featured-coupon" class="coupon-apply-btn">
+                Apply
+              </button>
+            </div>
+            
+            <!-- Apply More Link at Bottom -->
+            <a href="#" id="apply-more-link" class="apply-more-link">
+              Apply More Coupons/Gift Cards
+              <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            
+            <!-- Applied Coupon Display -->
+            <div id="applied-coupon-section" class="applied-coupon-section" style="display: none;">
+              <div class="applied-coupon-card">
+                <div class="applied-badge">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Applied</span>
+                </div>
+                <div class="applied-content">
+                  <h4 id="applied-coupon-title">Coupon Applied!</h4>
+                  <p id="applied-coupon-desc">You're saving money</p>
+                  <div class="applied-details">
+                    <span class="coupon-code">Code: <strong id="applied-coupon-code">WELCOME15</strong></span>
+                    <span id="applied-coupon-savings" class="savings-amount">Saved ₹150</span>
+                  </div>
+                </div>
+                <button id="remove-coupon" class="btn-remove-coupon" title="Remove coupon">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Order Summary -->
+          <div class="order-summary">
+          <div class="summary-header" onclick="toggleSummary()">
+            <h3>Order Summary</h3>
+            <i class="fas fa-chevron-down summary-toggle"></i>
+          </div>
+          <div class="summary-details" id="summary-details">
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="subtotal">Rs. 0</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span id="shipping">Free</span>
+            </div>
+            <div class="summary-row">
+              <span>Tax</span>
+              <span id="tax">Rs. 0</span>
+            </div>
+            <hr>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="total">Rs. 0</span>
+            </div>
+          </div>
+
+          <button id="checkout-btn" class="btn-checkout">Proceed to Checkout</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Continue shopping section removed as per requirements -->
+  </main>
+
+  <!-- Newsletter (common) -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Sign up for the Newsletter</h4>
+      <p>Get the latest updates and offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer (common) -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+        <div class="row">
+          <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+            <img src="../img/pay/app.jpg" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noopener">
+            <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+          </a>
+        </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods">
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Enhanced Coupon Modal -->
+  <div id="coupon-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3><i class="fas fa-tags"></i> Coupons & Offers</h3>
+        <button id="close-modal" class="btn-close-modal" aria-label="Close modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-content">
+        <!-- Enhanced Input Section with inline Apply button -->
+        <div class="coupon-input-section">
+          <h4>Enter Coupon Code</h4>
+          <div class="input-row">
+            <input type="text" id="modal-coupon-input" placeholder="Enter coupon/gift card/referral code" class="modal-input" maxlength="20">
+            <button id="modal-apply-coupon" class="btn-modal-apply">
+              Apply
+            </button>
+          </div>
+          <div class="input-hint">
+            <i class="fas fa-info-circle"></i>
+            Enter your coupon code above to apply discounts
+          </div>
+        </div>
+        
+        <div class="modal-divider"></div>
+        
+        <!-- Available Coupons List -->
+        <div class="available-coupons-section">
+          <div class="section-header">
+            <h4><i class="fas fa-gift"></i> Available Coupons</h4>
+            <span id="coupons-count" class="coupons-count">Loading...</span>
+          </div>
+          <div id="modal-coupons-list" class="modal-coupons-list">
+            <!-- Coupons will be populated by JavaScript -->
+            <div class="loading-coupons">
+              <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+              </div>
+              <span>Loading available coupons...</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <div class="footer-note">
+            <i class="fas fa-shield-alt"></i>
+            All coupons are verified and secure
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/cart-coupon.js"></script>
+  
+  <script>
+    // Order Summary Dropdown Toggle
+    function toggleSummary() {
+      const details = document.getElementById('summary-details');
+      const toggle = document.querySelector('.summary-toggle');
+      const isCollapsed = details.style.display === 'none';
+      
+      if (isCollapsed) {
+        details.style.display = 'block';
+        toggle.classList.remove('fa-chevron-down');
+        toggle.classList.add('fa-chevron-up');
+      } else {
+        details.style.display = 'none';
+        toggle.classList.remove('fa-chevron-up');
+        toggle.classList.add('fa-chevron-down');
+      }
+    }
+    
+    // Initialize cart with test data for coupon functionality
+    function initializeTestCart() {
+      const subtotalEl = document.getElementById('subtotal');
+      const shippingEl = document.getElementById('shipping');
+      const taxEl = document.getElementById('tax');
+      const totalEl = document.getElementById('total');
+      
+      console.log('🛒 Initializing test cart...');
+      console.log('Subtotal element:', subtotalEl);
+      console.log('Current subtotal text:', subtotalEl?.textContent);
+      
+      // Set initial test values if cart is empty or has zero value
+      const currentSubtotal = subtotalEl ? parseFloat(subtotalEl.textContent.replace(/[^0-9.]/g, '')) || 0 : 0;
+      console.log('Parsed current subtotal:', currentSubtotal);
+      
+      if (subtotalEl && currentSubtotal === 0) {
+        const testSubtotal = 1500; // Set to 1500 to test coupon functionality
+        const testShipping = 0; // Free shipping over 1500
+        const testTax = Math.round(testSubtotal * 0.18);
+        const testTotal = testSubtotal + testShipping + testTax;
+        
+        subtotalEl.textContent = `Rs. ${testSubtotal.toLocaleString('en-IN')}`;
+        shippingEl.textContent = testShipping === 0 ? 'Free' : `Rs. ${testShipping}`;
+        taxEl.textContent = `Rs. ${testTax.toLocaleString('en-IN')}`;
+        totalEl.textContent = `Rs. ${testTotal.toLocaleString('en-IN')}`;
+        
+        console.log('✅ Test cart data initialized with subtotal: ₹' + testSubtotal);
+      } else {
+        console.log('📊 Using existing cart data with subtotal: ₹' + currentSubtotal);
+      }
+    }
+    
+    // Force apply coupon function for debugging
+    function forceApplyCoupon() {
+      console.log('🔧 Force applying OOF15 coupon...');
+      if (window.CouponSystem && window.CouponSystem.applyCode) {
+        window.CouponSystem.applyCode('OOF15');
+      } else {
+        console.error('CouponSystem not available');
+      }
+    }
+    
+    // Force apply NEWUSER25 coupon for debugging
+    function forceApplyNewUser() {
+      console.log('🔧 Force applying NEWUSER25 coupon...');
+      if (window.CouponSystem && window.CouponSystem.applyCode) {
+        window.CouponSystem.applyCode('NEWUSER25');
+      } else {
+        console.error('CouponSystem not available');
+      }
+    }
+    
+    // Make it available globally for console testing
+    window.forceApplyCoupon = forceApplyCoupon;
+    window.forceApplyNewUser = forceApplyNewUser;
+    
+    // Debug helper function
+    window.debugCoupon = function() {
+      if (window.CouponSystem && window.CouponSystem.debug) {
+        window.CouponSystem.debug();
+      } else {
+        console.error('CouponSystem debug not available');
+      }
+    };
+    
+    // Force sync function
+    window.forceSyncCoupon = function() {
+      if (window.CouponSystem && window.CouponSystem.syncWithCartManager) {
+        console.log('🔧 Force syncing coupon systems...');
+        window.CouponSystem.syncWithCartManager();
+      } else {
+        console.error('CouponSystem sync not available');
+      }
+    };
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeTestCart();
+      
+      // Add debug info
+      setTimeout(() => {
+        console.log('🎫 Page loaded. You can test coupon by:');
+        console.log('1. Clicking the Apply button in the coupon section');
+        console.log('2. Running forceApplyCoupon() to test OOF15');
+        console.log('3. Running forceApplyNewUser() to test NEWUSER25');
+        console.log('4. Running debugCoupon() to see order summary details');
+        console.log('5. Running forceSyncCoupon() to force sync between systems');
+        console.log('6. Checking cart totals and coupon validation');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

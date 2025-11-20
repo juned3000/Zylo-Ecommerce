@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Zylo Ecommerce</title>
+  <!-- Shared and page-specific styles -->
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/contact.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo"></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Page header (Contact hero) -->
+  <section id="page-header" class="section-p1" aria-labelledby="contact-heading" role="region">
+    <h1 id="contact-heading">We’re here to help</h1>
+    <p>Fast, friendly support — we typically reply within 2 hours.</p>
+  </section>
+
+  <main id="content" class="section-p1">
+    <!-- Contact methods overview -->
+    <section class="contact-methods" aria-label="Ways to reach us">
+      <div class="cm-grid">
+        <article class="c-card" aria-label="Customer Support">
+          <i class="fas fa-headset" aria-hidden="true"></i>
+          <h3>Customer Support</h3>
+          <p>Questions about an order or our products? We’ve got you.</p>
+          <a class="btn" href="#contact-form">Send a message</a>
+        </article>
+        <article class="c-card" aria-label="Sales">
+          <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+          <h3>Sales</h3>
+          <p>Bulk or corporate orders, custom quotes, and partnerships.</p>
+          <a class="btn" href="#contact-form">Talk to sales</a>
+        </article>
+        <article class="c-card" aria-label="Partnerships">
+          <i class="fas fa-handshake" aria-hidden="true"></i>
+          <h3>Partnerships</h3>
+          <p>Let’s build together — collaborations and co‑marketing.</p>
+          <a class="btn" href="#contact-form">Start a conversation</a>
+        </article>
+        <article class="c-card" aria-label="Press & Media">
+          <i class="fas fa-bullhorn" aria-hidden="true"></i>
+          <h3>Press & Media</h3>
+          <p>Press inquiries, assets, and interview requests.</p>
+          <a class="btn" href="#contact-form">Contact PR</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Two-column layout: form + helpful info -->
+    <section class="contact-wrapper" aria-labelledby="form-heading">
+      <div class="form-col">
+        <h2 id="form-heading">Send us a message</h2>
+        <p class="helper">Fill out the form and our team will get back to you shortly.</p>
+
+        <form id="contact-form" class="contact-form" action="#" method="post" novalidate>
+          <!-- Honeypot to discourage spam bots -->
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="fullname">Full name</label>
+              <input id="fullname" name="fullname" type="text" placeholder="Jane Doe" required>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" inputmode="tel">
+            </div>
+
+            <div class="field">
+              <label for="order">Order # (optional)</label>
+              <input id="order" name="order" type="text" placeholder="e.g., ZY-123456">
+            </div>
+
+            <div class="field full">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic" required>
+                <option value="" disabled selected>Select a topic</option>
+                <option>Customer Support</option>
+                <option>Sales</option>
+                <option>Partnerships</option>
+                <option>Returns & Exchanges</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" rows="6" placeholder="Share a few details so we can assist you faster." required></textarea>
+            </div>
+
+            <div class="consent-row full">
+              <label class="checkbox">
+                <input type="checkbox" name="consent" required>
+                <span>I agree to the <a href="privacy-policy.html">Privacy Policy</a>.</span>
+              </label>
+            </div>
+
+            <div class="actions full">
+              <button type="submit" aria-label="Send message to Zylo support">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                Send message
+              </button>
+              <p class="sla">Average response time: <strong>~2 hours</strong></p>
+            </div>
+          </div>
+
+          <!-- Note: Hook this form up to your backend or a form service.
+               Example: set action="/api/contact" and handle POST server-side. -->
+        </form>
+      </div>
+
+      <aside class="info-col" aria-label="Contact information">
+        <div class="info-card highlight">
+          <i class="fas fa-phone-alt" aria-hidden="true"></i>
+          <div>
+            <h3>Urgent help?</h3>
+            <p>Call us Mon–Sat, 10:00–18:00</p>
+            <a class="btn alt" href="tel:+919876543210" aria-label="Call Zylo support">+91 98765 43210</a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+          <div>
+            <h3>Office</h3>
+            <address>
+              3rd Lane, Brodipet<br>
+              Guntur, Andhra Pradesh 522002
+            </address>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <i class="fas fa-clock" aria-hidden="true"></i>
+          <div>
+            <h3>Hours</h3>
+            <p>10:00 – 18:00, Mon – Sat</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <i class="fas fa-question-circle" aria-hidden="true"></i>
+          <div>
+            <h3>Help Center</h3>
+            <p>Quick answers to common questions.</p>
+            <a class="link" href="#">Browse FAQs</a>
+          </div>
+        </div>
+
+        <details class="tips">
+          <summary>Tips for a faster reply</summary>
+          <ul>
+            <li>Include your order number if you have one.</li>
+            <li>Share photos for quality or sizing issues.</li>
+            <li>Tell us your preferred contact method.</li>
+          </ul>
+        </details>
+      </aside>
+    </section>
+
+    <!-- Location -->
+    <section class="location" aria-labelledby="location-heading">
+      <h2 id="location-heading">Our Location</h2>
+      <div class="location-grid">
+        <div class="map-card">
+          <div class="map">
+            <iframe title="Map — Zylo Office" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=3rd%20Lane%2C%20Brodipet%2C%20Guntur%2C%20Andhra%20Pradesh%20522002&z=14&output=embed" allowfullscreen></iframe>
+          </div>
+          <p class="map-note">Tip: Replace the address in the map URL with your exact location.</p>
+        </div>
+        <div class="loc-details">
+          <div class="loc-card">
+            <h3>Head Office</h3>
+            <address>
+              3rd Lane, Brodipet<br>
+              Guntur, Andhra Pradesh 522002
+            </address>
+            <ul class="loc-list">
+              <li><i class="fas fa-bus" aria-hidden="true"></i> Public transit: Central Station (Line A), Bus 12</li>
+              <li><i class="fas fa-parking" aria-hidden="true"></i> Parking: On‑site visitor parking available</li>
+              <li><i class="fas fa-wheelchair" aria-hidden="true"></i> Accessibility: Step‑free access and elevators</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Newsletter (common) -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Sign up for the Newsletter</h4>
+      <p>Get the latest updates and offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer (common) -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+        <div class="row">
+          <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+            <img src="../img/pay/app.jpg" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noopener">
+            <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+          </a>
+        </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods">
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+  <script src="../js/common.js"></script>
+</body>
+</html>

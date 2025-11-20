@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Shared and page-specific styles -->
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/rating.css">
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="../img/logo.jpg" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li class="search-container">
+                    <input type="text" class="search-bar" placeholder="What are you looking for?">
+                    <i class="fas fa-search search-icon"></i>
+                </li>
+                <li class="mobile-search-icon" onclick="toggleMobileSearch()" title="Search">
+                    <i class="fas fa-search"></i>
+                </li>
+                <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+                <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+                <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Mobile Search Panel -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay" onclick="closeMobileSearch()"></div>
+    <div class="mobile-search-panel" id="mobileSearchPanel">
+        <div class="mobile-search-content">
+            <div class="search-container">
+                <input type="text" class="search-bar" id="mobileSearchBar" placeholder="What are you looking for?">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <i class="fas fa-times mobile-search-close" onclick="closeMobileSearch()" title="Close"></i>
+        </div>
+    </div>
+
+    <section id="hero">
+        <h4>Trade-in-offer</h4>
+        <h2>Super value deals</h2>
+        <h1>On all products</h1>
+        <p>Save more with coupons & up to 70% off!</p>
+        <a href="shop.html"><button>Shop Now</button></a>
+    </section>
+
+    <section id="feature" class="section-p1">
+        <div class="fe-box">
+            <img src="../img/features/f1.png" alt="">
+            <h6>Free Shipping</h6>
+            
+        </div>
+        <div class="fe-box">
+            <img src="../img/features/f2.png" alt="">
+            <h6>Fast Delivery</h6>
+            
+        </div>
+        <div class="fe-box">
+            <img src="../img/features/f3.png" alt="">
+            <h6>Save More</h6>
+            
+        </div>
+        <div class="fe-box">
+            <img src="../img/features/f4.png" alt="">
+            <h6>Hot Deals</h6>
+            
+        </div>
+        <div class="fe-box">
+            <img src="../img/features/f5.png" alt="">
+            <h6>Best Offers</h6>
+            
+        </div>
+        <div class="fe-box">
+            <img src="../img/features/f6.png" alt="">
+            <h6>24/7 Help</h6>
+            
+        </div>
+    </section>
+
+    <!-- Modern Coupon Discount Banner -->
+    <section id="coupon-banner">
+        <div class="coupon-container">
+            <div class="coupon-content">
+                <div class="coupon-left">
+                    <div class="coupon-badge">
+                        <i class="fas fa-percent"></i>
+                        <span>SALE</span>
+                    </div>
+                    <div class="coupon-info">
+                        <h2 class="coupon-title">Exclusive Discount</h2>
+                        <p class="coupon-subtitle">Use coupon code to get amazing discounts</p>
+                    </div>
+                    <div class="coupon-code-container">
+                        <span class="coupon-code" id="dynamic-coupon-code">LOADING...</span>
+                        <button class="copy-btn" onclick="copyCouponCode()" title="Copy Code">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="coupon-details">
+                    <span class="discount-text" id="discount-text">Get up to 25% OFF</span>
+                    <span class="valid-until" id="valid-until">Valid until: Loading...</span>
+                </div>
+                <div class="coupon-right">
+                    <div class="coupon-visual">
+                        <div class="floating-icon icon-1">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="floating-icon icon-2">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="floating-icon icon-3">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <div class="coupon-graphic">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+    <h2>Featured Products</h2>
+    <p>Summer Collection New Modern Design</p>
+    <div class="pro-container">
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f1')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f1"><img src="../img/products/f1.jpg" alt="Abstract Summer Shirt by Nike"></a>
+            <div class="des">
+                <span>Nike</span>
+                <h5>Abstract Summer Shirt</h5>
+                <div class="product-rating" id="rating-f1"></div>
+                <h4>Rs. 1,299</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f2')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f2"><img src="../img/products/f2.jpg" alt="Tropical Leaf Shirt by H&M"></a>
+            <div class="des">
+                <span>H&M</span>
+                <h5>Tropical Leaf Shirt</h5>
+                <div class="product-rating" id="rating-f2"></div>
+                <h4>Rs. 1,199</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f3')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f3"><img src="../img/products/f3.jpg" alt="Floral Paradise Shirt by Zara"></a>
+            <div class="des">
+                <span>Zara</span>
+                <h5>Floral Paradise Shirt</h5>
+                <div class="product-rating" id="rating-f3"></div>
+                <h4>Rs. 1,499</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f4')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f4"><img src="../img/products/f4.jpg" alt="Cherry Blossom Shirt by Levi’s"></a>
+            <div class="des">
+                <span>Levi's</span>
+                <h5>Cherry Blossom Shirt</h5>
+                <div class="product-rating" id="rating-f4"></div>
+                <h4>Rs. 1,099</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f5')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f5"><img src="../img/products/f5.jpg" alt="Midnight Bloom Shirt by Tommy Hilfiger"></a>
+            <div class="des">
+                <span>Tommy Hilfiger</span>
+                <h5>Midnight Bloom Shirt</h5>
+                <div class="product-rating" id="rating-f5"></div>
+                <h4>Rs. 1,399</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f6')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f6"><img src="../img/products/f6.jpg" alt="Dual-Tone Casual Shirt by Uniqlo"></a>
+            <div class="des">
+                <span>Uniqlo</span>
+                <h5>Dual-Tone Casual Shirt</h5>
+                <div class="product-rating" id="rating-f6"></div>
+                <h4>Rs. 1,249</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f7')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f7"><img src="../img/products/f7.jpg" alt="Black Oversized T-Shirt by Gucci"></a>
+            <div class="des">
+                <span>Gucci</span>
+                <h5>Black Oversized T-Shirt</h5>
+                <div class="product-rating" id="rating-f7"></div>
+                <h4>Rs. 2,499</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f8')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f8"><img src="../img/products/f8.jpg" alt="Lavender Print Loose Top by Forever 21"></a>
+            <div class="des">
+                <span>Forever 21</span>
+                <h5>Lavender Print Loose Top</h5>
+                <div class="product-rating" id="rating-f8"></div>
+                <h4>Rs. 999</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f9')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f9"><img src="../img/products/f9.jpg" alt="Beige Designer Shirt by Prada"></a>
+            <div class="des">
+                <span>Prada</span>
+                <h5>Beige Designer Shirt</h5>
+                <div class="product-rating" id="rating-f9"></div>
+                <h4>Rs. 2,199</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('f10')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=f10"><img src="../img/products/f10.jpg" alt="Grey Knitted Sweater by Mango"></a>
+            <div class="des">
+                <span>Mango</span>
+                <h5>Grey Knitted Sweater</h5>
+                <div class="product-rating" id="rating-f10"></div>
+                <h4>Rs. 1,799</h4>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section id="banner" aria-labelledby="banner-heading" role="region">
+        <div class="banner-inner">
+            <h2 id="banner-heading">Fresh Looks, Big Savings</h2>
+            <p>Up to <span>70% off</span> — Shop Trendy T‑Shirts & Accessories!</p>
+            <a class="btn" href="shop.html" aria-label="Shop now">Explore Now</a>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+    <h2>Latest Arrivals</h2>
+    <p>Trendy Styles for Every Occasion</p>
+    <div class="pro-container">
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n1')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n1"><img src="../img/products/n1.jpg" alt="Sky Blue Casual Shirt by Uniqlo"></a>
+            <div class="des">
+                <span>Uniqlo</span>
+                <h5>Sky Blue Casual Shirt</h5>
+                <div class="product-rating" id="rating-n1"></div>
+                <h4>Rs. 1,199</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n2')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n2"><img src="../img/products/n2.jpg" alt="Checkered Slim Shirt by H&M"></a>
+            <div class="des">
+                <span>H&M</span>
+                <h5>Checkered Slim Shirt</h5>
+                <div class="product-rating" id="rating-n2"></div>
+                <h4>Rs. 1,299</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n3')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n3"><img src="../img/products/n3.jpg" alt="White Linen Shirt by Zara"></a>
+            <div class="des">
+                <span>Zara</span>
+                <h5>White Linen Shirt</h5>
+                <div class="product-rating" id="rating-n3"></div>
+                <h4>Rs. 1,499</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n4')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n4"><img src="../img/products/n4.jpg" alt="Beige Patterned Shirt by Levi's"></a>
+            <div class="des">
+                <span>Levi's</span>
+                <h5>Beige Patterned Shirt</h5>
+                <div class="product-rating" id="rating-n4"></div>
+                <h4>Rs. 1,599</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n5')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n5"><img src="../img/products/n5.jpg" alt="Denim Casual Shirt by Tommy Hilfiger"></a>
+            <div class="des">
+                <span>Tommy Hilfiger</span>
+                <h5>Denim Casual Shirt</h5>
+                <div class="product-rating" id="rating-n5"></div>
+                <h4>Rs. 1,799</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n6')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n6"><img src="../img/products/n6.jpg" alt="Striped Summer Shorts by Gap"></a>
+            <div class="des">
+                <span>Gap</span>
+                <h5>Striped Summer Shorts</h5>
+                <div class="product-rating" id="rating-n6"></div>
+                <h4>Rs. 999</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n7')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n7"><img src="../img/products/n7.jpg" alt="Brown Safari Jacket by Mango"></a>
+            <div class="des">
+                <span>Mango</span>
+                <h5>Brown Safari Jacket</h5>
+                <div class="product-rating" id="rating-n7"></div>
+                <h4>Rs. 2,299</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n8')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n8"><img src="../img/products/n8.jpg" alt="Black Relaxed Shirt by Calvin Klein"></a>
+            <div class="des">
+                <span>Calvin Klein</span>
+                <h5>Black Relaxed Shirt</h5>
+                <div class="product-rating" id="rating-n8"></div>
+                <h4>Rs. 1,499</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n9')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n9"><img src="../img/products/n9.jpg" alt="Blue Denim Jacket by Diesel"></a>
+            <div class="des">
+                <span>Diesel</span>
+                <h5>Blue Denim Jacket</h5>
+                <div class="product-rating" id="rating-n9"></div>
+                <h4>Rs. 2,799</h4>
+            </div>
+        </div>
+        <div class="pro">
+            <div class="wishlist-icon" onclick="window.ZYLO?.addToWishlist('n10')" title="Add to Wishlist">
+                <i class="far fa-heart"></i>
+            </div>
+            <a href="singlepro.html?id=n10"><img src="../img/products/n10.jpg" alt="Light Blue Denim Jeans by Levi's"></a>
+            <div class="des">
+                <span>Levi's</span>
+                <h5>Light Blue Denim Jeans</h5>
+                <div class="product-rating" id="rating-n10"></div>
+                <h4>Rs. 2,199</h4>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section id="newsletter">
+        <div class="newstext">
+            <h4>Sign up for the Newsletter</h4>
+            <p>Get the latest updates and offers.</p>
+        </div>
+        <div class="form">
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+            <p><strong>Phone:</strong> +91 98765 43210</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="about.html">About us</a>
+            <a href="delivery-info.html">Delivery Information</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-conditions.html">Terms & Conditions</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="login.html">Sign In</a>
+            <a href="cart.html">View Cart</a>
+            <a href="wishlist.html">My Wishlist</a>
+            <a href="track-order.html">Track My Order</a>
+            <a href="contact.html">Help</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+                    <img src="../img/pay/app.jpg" alt="Download on the App Store">
+                </a>
+                <a href="https://play.google.com/store" target="_blank" rel="noopener">
+                    <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+                </a>
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="../img/pay/pay.png" alt="">
+        </div>
+
+        <div class="copyright">
+            <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/cart-manager.js"></script>
+    <script src="../js/wishlist-manager.js"></script>
+    <script src="../js/rating.js"></script>
+    <script src="../js/products.js"></script>
+    <script>
+        // Mobile Search Toggle Functions
+        function toggleMobileSearch() {
+            const overlay = document.getElementById('mobileSearchOverlay');
+            const panel = document.getElementById('mobileSearchPanel');
+            const searchBar = document.getElementById('mobileSearchBar');
+            
+            overlay.classList.add('active');
+            panel.classList.add('active');
+            
+            // Focus on search input after animation
+            setTimeout(() => {
+                searchBar.focus();
+            }, 300);
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileSearch() {
+            const overlay = document.getElementById('mobileSearchOverlay');
+            const panel = document.getElementById('mobileSearchPanel');
+            
+            overlay.classList.remove('active');
+            panel.classList.remove('active');
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileSearch();
+            }
+        });
+        
+        // Handle mobile search submission
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileSearchBar = document.getElementById('mobileSearchBar');
+            if (mobileSearchBar) {
+                mobileSearchBar.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        const query = mobileSearchBar.value.trim();
+                        if (query) {
+                            window.location.href = `shop.html?q=${encodeURIComponent(query)}`;
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        // Initialize wishlist icons and ratings when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.ZYLO && window.ZYLO.updateWishlistIcons) {
+                window.ZYLO.updateWishlistIcons();
+            }
+            
+            // Initialize product ratings
+            if (window.RatingSystem) {
+                // Featured products
+                const featuredProducts = ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10'];
+                featuredProducts.forEach(productId => {
+                    const ratingData = window.RatingSystem.getSampleRating(productId);
+                    const ratingElement = document.getElementById(`rating-${productId}`);
+                    if (ratingElement) {
+                        ratingElement.innerHTML = window.RatingSystem.createStarRating(
+                            ratingData.averageRating,
+                            ratingData.totalRatings,
+                            'small',
+                            true,
+                            false
+                        );
+                    }
+                });
+                
+                // Latest arrivals products
+                const latestProducts = ['n1', 'n2', 'n3', 'n4', 'n5', 'n6', 'n7', 'n8', 'n9', 'n10'];
+                latestProducts.forEach(productId => {
+                    const ratingData = window.RatingSystem.getSampleRating(productId);
+                    const ratingElement = document.getElementById(`rating-${productId}`);
+                    if (ratingElement) {
+                        ratingElement.innerHTML = window.RatingSystem.createStarRating(
+                            ratingData.averageRating,
+                            ratingData.totalRatings,
+                            'small',
+                            true,
+                            false
+                        );
+                    }
+                });
+            }
+            
+            // Load coupon banner data
+            loadCouponBanner();
+        });
+        
+        // Coupon Banner Functionality
+        async function loadCouponBanner() {
+            try {
+                // Fetch active coupons from backend
+                const response = await fetch('http://localhost:5000/api/coupons/active');
+                const data = await response.json();
+                
+                if (data.success && data.coupons && data.coupons.length > 0) {
+                    // Get the first active coupon
+                    const coupon = data.coupons[0];
+                    updateCouponBanner(coupon);
+                } else {
+                    // Use default coupon if no active coupons found
+                    updateCouponBanner({
+                        code: 'WELCOME25',
+                        discountType: 'percentage',
+                        discountValue: 25,
+                        validTo: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
+                        description: 'Welcome discount for new customers'
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading coupon banner:', error);
+                // Use fallback coupon
+                updateCouponBanner({
+                    code: 'SAVE20',
+                    discountType: 'percentage',
+                    discountValue: 20,
+                    validTo: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+                    description: 'Limited time offer'
+                });
+            }
+        }
+        
+        function updateCouponBanner(coupon) {
+            // Update coupon code
+            const codeElement = document.getElementById('dynamic-coupon-code');
+            if (codeElement) {
+                codeElement.textContent = coupon.code;
+                codeElement.setAttribute('data-code', coupon.code);
+            }
+            
+            // Update discount text
+            const discountElement = document.getElementById('discount-text');
+            if (discountElement) {
+                const discountText = coupon.discountType === 'percentage' 
+                    ? `Get up to ${coupon.discountValue}% OFF`
+                    : `Get ₹${coupon.discountValue} OFF`;
+                discountElement.textContent = discountText;
+            }
+            
+            // Update valid until date
+            const validElement = document.getElementById('valid-until');
+            if (validElement && coupon.validTo) {
+                const validDate = new Date(coupon.validTo);
+                const formattedDate = validDate.toLocaleDateString('en-IN', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                validElement.textContent = `Valid until: ${formattedDate}`;
+            }
+        }
+        
+        // Copy coupon code function
+        function copyCouponCode() {
+            const codeElement = document.getElementById('dynamic-coupon-code');
+            const code = codeElement.getAttribute('data-code') || codeElement.textContent;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(code).then(() => {
+                    showCopySuccess();
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    fallbackCopyTextToClipboard(code);
+                });
+            } else {
+                fallbackCopyTextToClipboard(code);
+            }
+        }
+        
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.top = '-1000px';
+            textArea.style.left = '-1000px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopySuccess();
+                }
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        function showCopySuccess() {
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalHtml = copyBtn.innerHTML;
+            
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            copyBtn.style.background = 'rgba(34, 197, 94, 0.8)';
+            
+            // Show success message
+            const message = document.createElement('div');
+            message.textContent = 'Coupon code copied!';
+            message.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #22c55e;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                z-index: 9999;
+                font-weight: 600;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalHtml;
+                copyBtn.style.background = '';
+                message.remove();
+            }, 2000);
+        }
+        
+        // Make functions globally available
+        window.copyCouponCode = copyCouponCode;
+    </script>
+    
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</body>
+</html>

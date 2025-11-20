@@ -1,0 +1,322 @@
+/*
+  Zylo Ecommerce – shop.css
+  Page-specific styles for Frontend/shop.html.
+  Assumes common.css is loaded first for variables and base styles.
+*/
+
+/* Page header (shop hero) */
+#page-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 320px;
+  padding: 60px 24px;
+  margin: 24px 0;
+  border-radius: var(--radius-lg);
+  color: #fff;
+  background-image: url("../img/banner/b1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+#page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)); */
+}
+#page-header > * { position: relative; z-index: 1; }
+#page-header h1 { margin: 0 0 8px; font-size: clamp(2rem, 3.5vw + 0.5rem, 3rem); line-height: 1.2; font-weight: 700; }
+#page-header p  { margin: 0; opacity: 0.95; font-size: clamp(1rem, 1.2vw + 0.5rem, 1.2rem); }
+#page-header p span {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.24);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Shop Layout - Sidebar + Products */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Filters Sidebar */
+.filters-sidebar {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.filters-sidebar h3 { margin: 0; font-size: 1.1rem; }
+.filters-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.clear-filters { color: var(--primary-700); font-weight: 600; text-decoration: none; font-size: 0.9rem; cursor: pointer; }
+.clear-filters:hover { text-decoration: none; filter: brightness(0.95); }
+.filter-group { margin-bottom: 20px; }
+.filter-group > label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text); }
+.filter-group input[type="search"],
+.filter-group select {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+}
+/* Floating field container for nice label-in-border visuals */
+.field-floating {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  padding: 10px 12px;
+}
+.field-floating:focus-within { border-color: var(--primary-300); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08); }
+.field-floating .field-label {
+  position: absolute;
+  top: -9px;
+  left: 12px;
+  padding: 0 6px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--muted);
+  background: var(--card-bg);
+}
+.field-floating .field-control {
+  width: 100%;
+  height: 40px;
+  border: none !important;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  padding: 0 4px;
+}
+.checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+.checkbox { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9rem; }
+.checkbox input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+.size-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.size-btn {
+  display: flex; align-items: center; justify-content: center;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-bg);
+  cursor: pointer;
+  text-align: center;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.size-btn:hover { border-color: var(--primary-300); background: var(--bg); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.size-btn input[type="checkbox"] { display: none; }
+.size-btn:has(input:checked) { background: var(--primary-700); color: #fff; border-color: var(--primary-700); box-shadow: 0 4px 10px rgba(0,0,0,0.12); }
+.filter-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 24px; }
+.filter-actions button { width: 100%; }
+.btn-reset { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-reset:hover { background: var(--bg); border-color: var(--muted); }
+
+/* Accordion Filters */
+.accordion { border-bottom: 1px solid var(--border); }
+.accordion:last-of-type { border-bottom: none; }
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+}
+.accordion-header:hover { color: var(--text); background: rgba(0,0,0,0.04); border-radius: var(--radius-sm); }
+.accordion-header i { transition: transform .25s ease; color: var(--muted); }
+.accordion-content {
+  will-change: max-height, opacity;
+  transition: max-height .25s ease, opacity .2s ease;
+  overflow: hidden;
+}
+.accordion .checkbox-group { padding: 8px 0 6px; }
+/* Improve checkbox item hover without changing text color to blue */
+.accordion .checkbox-group .checkbox {
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background .2s ease, color .2s ease;
+}
+.accordion .checkbox-group .checkbox:hover {
+  background: rgba(0,0,0,0.04);
+  color: var(--text);
+}
+/* Keep native checkbox accent but do not change label color on hover */
+.checkbox input[type="checkbox"] { accent-color: var(--primary-700); }
+
+/* Show/Hide control */
+.list-toggle-container { padding: 6px 0 12px; }
+.list-toggle {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.list-toggle:hover { text-decoration: none; }
+
+/* Products Section */
+.products-section { flex: 1; }
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.products-header h2 { margin: 0; font-size: clamp(1.25rem, 2vw + 0.4rem, 1.75rem); font-weight: 800; }
+.products-header h2 .products-count { margin-left: 8px; color: var(--muted); font-weight: 600; font-size: 0.9em; }
+.sort-controls { display: flex; align-items: center; gap: 8px; }
+.sort-label { font-size: 0.9rem; color: var(--muted); font-weight: 600; }
+.sort-controls select {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--text);
+  font-weight: 500;
+}
+
+#shop .products-section .pro-container {
+  display: grid;
+  grid-template-columns: repeat(4, 260px);
+  gap: 24px;
+  justify-content: start; /* leave empty space if fewer than 4 items in the row */
+}
+#shop .pro {
+  width: 260px; /* fixed card width to avoid stretching */
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+#shop .pro:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+#shop .pro img {
+  width: 100%; height: 220px; object-fit: cover;
+  border-radius: 12px;
+}
+#shop .des { padding: 10px 6px 4px; }
+#shop .des span { display: block; color: var(--muted); font-size: 0.85rem; }
+#shop .des h5 { margin: 4px 0 6px; font-size: 1rem; font-weight: 700; color: var(--text); }
+#shop .des h4 { margin: 0; color: var(--primary-700); font-size: 1.05rem; font-weight: 800; }
+
+/* Pagination */
+.pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+.pagination .page-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 36px; height: 36px; padding: 0 12px;
+  border-radius: 999px; border: 1px solid var(--border);
+  background: var(--card-bg); color: var(--text);
+  text-decoration: none; box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+.pagination .page-link:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); border-color: var(--primary-100); }
+.pagination .page-link[aria-current="page"] { background: var(--primary-700); color: #fff; border-color: var(--primary-700); }
+.pagination .page-link[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
+
+/* Responsive tweaks */
+@media (max-width: 1280px) {
+  #shop .products-section .pro-container { grid-template-columns: repeat(3, 260px); }
+}
+@media (max-width: 900px) {
+  .shop-layout { grid-template-columns: 1fr; gap: 0; }
+  .filters-sidebar { position: static; margin-bottom: 20px; max-height: none; }
+  #page-header { padding: 48px 20px; min-height: 280px; }
+  #shop .products-section .pro-container { grid-template-columns: repeat(2, 1fr); }
+  #shop .pro { width: auto; }
+  #shop .pro img { height: 200px; }
+}
+@media (max-width: 600px) {
+  #page-header { padding: 36px 16px; min-height: 240px; }
+  #shop .products-section .pro-container { grid-template-columns: 1fr; }
+  #shop .pro img { height: 180px; }
+}
+
+
+/* Add to Cart Button */
+.btn-add {
+  background: #2563eb; /* blue */
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+  background: #1d4ed8; /* darker blue */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Wishlist Button */
+.btn-wish {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: color 0.3s ease, transform 0.2s ease;
+  opacity: 1; /* Always visible */
+  visibility: visible; /* Make sure it's not hidden */
+}
+
+.btn-wish:hover {
+  background: #fee2e2;
+  transform: scale(1.1);
+}
+
+#shop .actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#shop .pro {
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+}

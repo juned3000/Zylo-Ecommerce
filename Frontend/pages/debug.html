@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Backend Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .test-section { margin: 20px 0; padding: 20px; border: 2px solid #e0e0e0; border-radius: 8px; }
+        .test-section.success { border-color: #28a745; background: #f8fff8; }
+        .test-section.error { border-color: #dc3545; background: #fff8f8; }
+        button { padding: 10px 20px; margin: 10px 5px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .result { margin-top: 15px; padding: 10px; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #b8daff; }
+        input { padding: 10px; margin: 5px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Backend Connection Debug Tool</h1>
+        <p>Use this tool to test your backend connection and admin user setup.</p>
+
+        <!-- Test 1: Backend Health Check -->
+        <div class="test-section" id="health-section">
+            <h3>Test 1: Backend Health Check</h3>
+            <p>Tests if your backend server is running and accessible.</p>
+            <button class="btn-primary" onclick="testHealth()">Test Backend Health</button>
+            <div id="health-result" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 2: Database Connection -->
+        <div class="test-section" id="db-section">
+            <h3>Test 2: Database Connection</h3>
+            <p>Tests if the backend can connect to MongoDB.</p>
+            <button class="btn-primary" onclick="testDatabase()">Test Database Connection</button>
+            <div id="db-result" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 3: Admin User Check -->
+        <div class="test-section" id="admin-section">
+            <h3>Test 3: Admin User Verification</h3>
+            <p>Check if admin user exists and can login.</p>
+            <input type="email" id="test-email" placeholder="Enter admin email" value="admin@zylo.com">
+            <input type="password" id="test-password" placeholder="Enter admin password" value="admin@123">
+            <button class="btn-success" onclick="testLogin()">Test Admin Login</button>
+            <div id="admin-result" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Test 4: Create Admin User -->
+        <div class="test-section" id="create-section">
+            <h3>Test 4: Create Admin User (If Needed)</h3>
+            <p>Creates an admin user if none exists.</p>
+            <button class="btn-danger" onclick="createAdmin()">Create Admin User</button>
+            <div id="create-result" class="result" style="display: none;"></div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="test-section">
+            <h3>📋 Troubleshooting Steps</h3>
+            <ol>
+                <li><strong>Backend Not Running:</strong> Make sure to start your backend server with <code>start-backend.bat</code></li>
+                <li><strong>Database Connection Failed:</strong> Ensure MongoDB is running and the connection string is correct</li>
+                <li><strong>Admin User Missing:</strong> Use the MongoDB document insertion method or click "Create Admin User"</li>
+                <li><strong>Login Failed:</strong> Verify email and password are correct (default: admin@zylo.com / admin@123)</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        async function testHealth() {
+            const section = document.getElementById('health-section');
+            const result = document.getElementById('health-result');
+            
+            result.style.display = 'block';
+            result.textContent = 'Testing backend health...';
+            result.className = 'result info';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`);
+                const data = await response.json();
+                
+                if (data.status === 'OK') {
+                    result.textContent = `✅ Backend is healthy!\n\nResponse: ${JSON.stringify(data, null, 2)}`;
+                    result.className = 'result success';
+                    section.className = 'test-section success';
+                } else {
+                    result.textContent = `⚠️ Backend responded but status is not OK.\n\nResponse: ${JSON.stringify(data, null, 2)}`;
+                    result.className = 'result error';
+                    section.className = 'test-section error';
+                }
+            } catch (error) {
+                result.textContent = `❌ Backend connection failed!\n\nError: ${error.message}\n\nMake sure your backend server is running on port 5000.`;
+                result.className = 'result error';
+                section.className = 'test-section error';
+            }
+        }
+
+        async function testDatabase() {
+            const section = document.getElementById('db-section');
+            const result = document.getElementById('db-result');
+            
+            result.style.display = 'block';
+            result.textContent = 'Testing database connection...';
+            result.className = 'result info';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/diagnostics/database`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.textContent = `✅ Database connection successful!\n\nDetails: ${JSON.stringify(data.diagnostics, null, 2)}`;
+                    result.className = 'result success';
+                    section.className = 'test-section success';
+                } else {
+                    result.textContent = `❌ Database connection failed!\n\nError: ${data.message}`;
+                    result.className = 'result error';
+                    section.className = 'test-section error';
+                }
+            } catch (error) {
+                result.textContent = `❌ Could not test database connection!\n\nError: ${error.message}`;
+                result.className = 'result error';
+                section.className = 'test-section error';
+            }
+        }
+
+        async function testLogin() {
+            const section = document.getElementById('admin-section');
+            const result = document.getElementById('admin-result');
+            const email = document.getElementById('test-email').value;
+            const password = document.getElementById('test-password').value;
+            
+            result.style.display = 'block';
+            result.textContent = `Testing login for ${email}...`;
+            result.className = 'result info';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.user && data.user.isAdmin) {
+                    result.textContent = `✅ Admin login successful!\n\nUser: ${data.user.name} (${data.user.email})\nAdmin: ${data.user.isAdmin}\nToken: ${data.token.substring(0, 20)}...`;
+                    result.className = 'result success';
+                    section.className = 'test-section success';
+                } else if (data.success && data.user && !data.user.isAdmin) {
+                    result.textContent = `⚠️ Login successful but user is not an admin!\n\nUser: ${data.user.name} (${data.user.email})\nAdmin: ${data.user.isAdmin}`;
+                    result.className = 'result error';
+                    section.className = 'test-section error';
+                } else {
+                    result.textContent = `❌ Login failed!\n\nError: ${data.message}\nResponse: ${JSON.stringify(data, null, 2)}`;
+                    result.className = 'result error';
+                    section.className = 'test-section error';
+                }
+            } catch (error) {
+                result.textContent = `❌ Login request failed!\n\nError: ${error.message}`;
+                result.className = 'result error';
+                section.className = 'test-section error';
+            }
+        }
+
+        async function createAdmin() {
+            const section = document.getElementById('create-section');
+            const result = document.getElementById('create-result');
+            
+            result.style.display = 'block';
+            result.textContent = 'Creating admin user...';
+            result.className = 'result info';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/create-admin`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@zylo.com',
+                        name: 'Admin User'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    result.textContent = `✅ Admin user created successfully!\n\nEmail: ${data.user.email}\nName: ${data.user.name}\nAdmin: ${data.user.isAdmin}\n\nNote: No password set. Use MongoDB to add passwordHash or use OTP login.`;
+                    result.className = 'result success';
+                    section.className = 'test-section success';
+                } else {
+                    result.textContent = `❌ Failed to create admin user!\n\nError: ${data.message}`;
+                    result.className = 'result error';
+                    section.className = 'test-section error';
+                }
+            } catch (error) {
+                result.textContent = `❌ Create admin request failed!\n\nError: ${error.message}`;
+                result.className = 'result error';
+                section.className = 'test-section error';
+            }
+        }
+    </script>
+</body>
+</html>

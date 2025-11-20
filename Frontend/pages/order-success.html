@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed - Zylo</title>
+  <link rel="stylesheet" href="../styles/common.css" />
+  <link rel="stylesheet" href="../styles/order.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+</head>
+<body>
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo" /></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <main class="section-p1">
+    <div class="success-wrap">
+      <!-- Success Animation -->
+      <div class="success-animation">
+        <div class="checkmark-circle">
+          <div class="background"></div>
+          <div class="checkmark draw"></div>
+        </div>
+      </div>
+
+      <div class="success-card">
+        <div class="success-header">
+          <h1 class="success-title">Order Confirmed!</h1>
+          <p class="success-subtitle">Thank you for your purchase. Your order has been successfully placed.</p>
+          <div class="confirmation-badge">
+            <i class="fas fa-shield-alt"></i>
+            <span>Your payment is secured</span>
+          </div>
+        </div>
+
+        <!-- Order Details Card -->
+        <div id="order-summary" class="order-details-card">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Delivery Information -->
+        <div class="delivery-info">
+          <div class="info-item">
+            <i class="fas fa-truck"></i>
+            <div>
+              <strong>Estimated Delivery</strong>
+              <p>3-5 business days</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <strong>Order Updates</strong>
+              <p>Sent to your email & SMS</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-headset"></i>
+            <div>
+              <strong>Need Help?</strong>
+              <p>Contact our 24/7 support</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+          <a class="btn primary" href="track-order.html">
+            <i class="fas fa-search-location"></i>
+            Track Your Order
+          </a>
+          <a class="btn secondary" href="shop.html">
+            <i class="fas fa-shopping-bag"></i>
+            Continue Shopping
+          </a>
+          <a class="btn outline" href="index.html">
+            <i class="fas fa-home"></i>
+            Back to Home
+          </a>
+        </div>
+
+        <!-- Social Sharing -->
+        <div class="share-section">
+          <p class="share-text">Love your purchase? Share it with friends!</p>
+          <div class="share-buttons">
+            <button class="share-btn facebook" onclick="shareOnFacebook()">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="share-btn twitter" onclick="shareOnTwitter()">
+              <i class="fab fa-twitter"></i>
+            </button>
+            <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Newsletter Section -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Stay Updated</h4>
+      <p>Get the latest updates on your order and exclusive offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+      <div class="row">
+        <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+          <img src="../img/pay/app.jpg" alt="Download on the App Store">
+        </a>
+        <a href="https://play.google.com/store" target="_blank" rel="noopener">
+          <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+        </a>
+      </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods">
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/order.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Failed - Zylo</title>
+  <link rel="stylesheet" href="../styles/common.css" />
+  <link rel="stylesheet" href="../styles/order.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+</head>
+<body>
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo" /></a>
+    <div>
+      <ul id="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a class="active" href="#">Payment Failed</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <main class="section-p1">
+    <div class="failed-wrap">
+      <div class="failed-card">
+        <div class="icon-circle">
+          <i class="fas fa-times"></i>
+        </div>
+        <h2>Payment Failed</h2>
+        <p class="muted">We couldn't process your payment. You can try again or choose a different method.</p>
+
+        <div id="failed-summary" class="order-summary-card">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="checkout.html">Back to Checkout</a>
+          <a class="btn outline" href="cart.html">View Cart</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/payment-failed.js"></script>
+</body>
+</html>

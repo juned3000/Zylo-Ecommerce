@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Signup - Zylo</title>
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/login.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo"></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Page header -->
+  <section id="page-header" class="section-p1" role="region" aria-labelledby="auth-heading">
+    <h1 id="auth-heading">Login / Signup</h1>
+    <p>Join us now to be a part of our family.</p>
+  </section>
+
+  <main class="section-p1">
+    <div class="auth-layout">
+      <div class="auth-card">
+        <!-- Header -->
+        <div class="auth-header">
+          <h2>Welcome back</h2>
+          <p class="subtitle">Login or create a new account using your email address.</p>
+        </div>
+
+        <!-- Email input -->
+        <div class="form">
+          <label class="label" for="email-address">Email Address</label>
+          <div class="email-row">
+            <input id="email-address" type="email" placeholder="Enter your email address" aria-required="true">
+          </div>
+          <button id="continue-btn" class="btn-continue" disabled>
+            Send Verification Code
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"><span>OR</span></div>
+
+        <!-- Social buttons -->
+        <div class="social-row">
+          <button class="btn-social google" id="google-btn">
+            <i class="fab fa-google"></i>
+            Continue with Google
+          </button>
+          <button class="btn-social facebook" id="facebook-btn">
+            <i class="fab fa-facebook-f"></i>
+            Continue with Facebook
+          </button>
+        </div>
+
+        <p class="terms">By continuing, you agree to our <a href="terms-conditions.html">Terms</a> and <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- OTP Modal Overlay -->
+  <div id="otp-overlay" class="otp-overlay" aria-hidden="true">
+    <div class="otp-modal" role="dialog" aria-modal="true" aria-labelledby="otp-title">
+      <button class="otp-close" id="otp-close" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="otp-header">
+        <h3 id="otp-title">Verify Email Code</h3>
+        <p class="otp-subtitle">We've sent a 6-digit verification code to <strong id="otp-email">your@email.com</strong></p>
+      </div>
+      <div class="otp-inputs" aria-label="Enter 6 digit OTP code">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 1">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+        <input class="otp-digit" type="text" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+      </div>
+      <div id="otp-error" class="otp-error" aria-live="polite"></div>
+      <div class="otp-actions">
+        <button id="verify-otp-btn" class="btn-continue" disabled>Verify</button>
+      </div>
+      <div class="otp-footer">
+        <button id="edit-email-btn" class="link-btn" type="button">Edit email</button>
+        <button id="resend-otp-btn" class="link-btn" type="button">Resend Code</button>
+        <span id="resend-timer" class="muted"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/cart-manager.js"></script>
+  <script src="../js/wishlist-manager.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>

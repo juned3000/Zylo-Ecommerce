@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account - Zylo</title>
+  <link rel="stylesheet" href="../styles/common.css" />
+  <link rel="stylesheet" href="../styles/account.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo" /></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?" />
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <main class="section-p1">
+    <div class="account-layout">
+      <!-- Left: Vertical Navigation -->
+      <aside class="account-nav" aria-label="Account Navigation">
+        <h3 class="nav-title">Dashboard</h3>
+        <nav>
+          <ul class="nav-list">
+            <li><button class="nav-item active" data-section="overview"><i class="fas fa-home"></i><span>Overview</span></button></li>
+            <li><button class="nav-item" data-section="orders"><i class="fas fa-box"></i><span>My Orders</span></button></li>
+            <li><button class="nav-item" data-section="payments"><i class="fas fa-credit-card"></i><span>My Payments</span></button></li>
+            <li><button class="nav-item" data-section="wallet"><i class="fas fa-wallet"></i><span>My Wallet</span></button></li>
+            <li><button class="nav-item" data-section="addresses"><i class="fas fa-map-marker-alt"></i><span>My Addresses</span></button></li>
+            <li><button class="nav-item" data-section="profile"><i class="fas fa-user-cog"></i><span>My Profile</span></button></li>
+            <li><button class="nav-item logout" data-section="logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></button></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Right: Main Content -->
+      <section class="account-content" aria-live="polite">
+        <!-- Profile Header Card -->
+        <div class="profile-card">
+          <div class="avatar" id="account-avatar" aria-hidden="true">JD</div>
+          <div class="profile-info">
+            <h2 id="user-name">John Doe</h2>
+            <div class="info-row">
+              <i class="far fa-envelope"></i>
+              <span id="user-email">john.doe@example.com</span>
+            </div>
+            <div class="info-row">
+              <i class="fas fa-phone"></i>
+              <span id="user-phone">+91 98765 43210</span>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn-accent" id="edit-profile-btn">
+              <i class="fas fa-user-edit"></i>
+              Edit Profile
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Tiles / Cards -->
+        <div class="tiles-grid">
+          <article class="tile">
+            <div class="tile-icon orders"><i class="fas fa-box"></i></div>
+            <h3>My Orders</h3>
+            <p>Track, return, or reorder your purchases.</p>
+            <a class="tile-link" href="#" data-section-link="orders">View</a>
+          </article>
+          <article class="tile">
+            <div class="tile-icon payments"><i class="fas fa-credit-card"></i></div>
+            <h3>My Payments</h3>
+            <p>Manage your saved cards and payment methods.</p>
+            <a class="tile-link" href="#" data-section-link="payments">Manage</a>
+          </article>
+          <article class="tile">
+            <div class="tile-icon wallet"><i class="fas fa-wallet"></i></div>
+            <h3>My Wallet</h3>
+            <p>Check balance, transactions, and add funds.</p>
+            <a class="tile-link" href="#" data-section-link="wallet">Open</a>
+          </article>
+          <article class="tile">
+            <div class="tile-icon addresses"><i class="fas fa-map-marker-alt"></i></div>
+            <h3>My Addresses</h3>
+            <p>View, add, or edit your delivery addresses.</p>
+            <a class="tile-link" href="#" data-section-link="addresses">Manage</a>
+          </article>
+          <article class="tile">
+            <div class="tile-icon profile"><i class="fas fa-user-cog"></i></div>
+            <h3>My Profile</h3>
+            <p>Update personal information and preferences.</p>
+            <a class="tile-link" href="#" data-section-link="profile">Edit</a>
+          </article>
+          <article class="tile">
+            <div class="tile-icon help"><i class="fas fa-life-ring"></i></div>
+            <h3>Help & Support</h3>
+            <p>Get assistance or contact our support team.</p>
+            <a class="tile-link" href="contact.html">Get Help</a>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Newsletter (common) -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Sign up for the Newsletter</h4>
+      <p>Get the latest updates and offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email" />
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer (common) -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+        <div class="row">
+          <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+            <img src="../img/pay/app.jpg" alt="Download on the App Store" />
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noopener">
+            <img src="../img/pay/play.jpg" alt="Get it on Google Play" />
+          </a>
+        </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods" />
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/account.js"></script>
+</body>
+</html>
+

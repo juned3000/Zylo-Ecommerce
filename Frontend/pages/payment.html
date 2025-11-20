@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Gateway - Zylo</title>
+  <link rel="stylesheet" href="../styles/common.css" />
+  <link rel="stylesheet" href="../styles/payment.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+</head>
+<body>
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo" /></a>
+    <div>
+      <ul id="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a class="active" href="#">Payment</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <main class="section-p1">
+    <div class="gateway-layout">
+      <div class="pg-card">
+        <div class="pg-header">
+          <i class="fas fa-shield-alt"></i>
+          <h2>Secure Payment</h2>
+        </div>
+        <div id="pg-meta" class="pg-meta">
+          <!-- Filled by JS: method, order id, amount -->
+        </div>
+
+        <div id="pg-content" class="pg-content">
+          <!-- Dynamic content per method -->
+        </div>
+
+        <div class="pg-actions">
+          <button id="btn-confirm" class="primary"><i class="fas fa-check"></i> Confirm Payment</button>
+          <button id="btn-fail" class="danger"><i class="fas fa-times"></i> Fail Payment</button>
+          <button id="btn-cancel" class="secondary"><i class="fas fa-arrow-left"></i> Cancel</button>
+        </div>
+
+        <p class="tip"><i class="far fa-lightbulb"></i> This is a demo gateway screen for local development.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/payment.js"></script>
+</body>
+</html>

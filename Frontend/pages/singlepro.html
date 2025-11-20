@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product - Zylo Ecommerce</title>
+  <!-- Shared and page-specific styles -->
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/singlepro.css">
+  <link rel="stylesheet" href="../styles/rating.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo"></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <main>
+    <!-- Product detail -->
+    <section id="product-detail" class="section-p1">
+      <nav class="breadcrumbs" aria-label="Breadcrumbs">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="shop.html">Shop</a>
+        <span aria-hidden="true">/</span>
+        <span id="crumb-title">Product</span>
+      </nav>
+      <div class="product-media">
+        <div class="product-card">
+          <img id="main-image" class="main-img" src="../img/products/f1.jpg" alt="Product image">
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h1 id="title" class="title">Product Name</h1>
+        <div id="brand" class="brand">Brand</div>
+        <div id="product-rating" class="product-rating"></div>
+        <div id="price" class="price">Rs. 0</div>
+
+        <div class="size-section">
+          <h4>Available sizes</h4>
+          <div id="sizes-container" class="sizes-grid" role="radiogroup" aria-label="Choose a size"></div>
+          <div id="size-error" class="size-error" aria-live="polite"></div>
+        </div>
+
+        <div class="qty-section">
+          <h4>Quantity</h4>
+          <div class="qty-control">
+            <button type="button" id="qty-dec" aria-label="Decrease quantity">−</button>
+            <input type="number" id="qty-input" min="1" value="1" inputmode="numeric" aria-label="Quantity">
+            <button type="button" id="qty-inc" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="add-to-cart" aria-label="Add to Cart">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            Add to Cart
+          </button>
+          <button id="add-to-wishlist" class="btn-secondary" aria-label="Add to Wishlist">
+            <i class="far fa-heart" aria-hidden="true"></i>
+            Add to Wishlist
+          </button>
+        </div>
+
+        <!-- Social Sharing Bar -->
+        <div class="social-sharing">
+          <h4>Share this product</h4>
+          <div class="social-buttons">
+            <button class="social-btn whatsapp" onclick="shareOnWhatsApp()" aria-label="Share on WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="social-btn facebook" onclick="shareOnFacebook()" aria-label="Share on Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-btn twitter" onclick="shareOnTwitter()" aria-label="Share on Twitter">
+              <i class="fab fa-twitter"></i>
+            </button>
+            <button class="social-btn instagram" onclick="shareOnInstagram()" aria-label="Share on Instagram">
+              <i class="fab fa-instagram"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Pincode Checker -->
+        <div class="pincode-checker">
+          <h4>Check delivery availability</h4>
+          <div class="pincode-input-group">
+            <input type="text" id="pincode-input" placeholder="Enter pincode" maxlength="6" pattern="[0-9]{6}">
+            <button type="button" id="check-pincode" class="check-btn">Check</button>
+          </div>
+          <div id="pincode-result" class="pincode-result hidden"></div>
+        </div>
+
+        <!-- Return Policy -->
+        <div class="return-policy">
+          <i class="fas fa-undo-alt"></i>
+          <span>30-day return policy</span>
+        </div>
+
+        <!-- Expandable Sections -->
+        <div class="expandable-sections">
+          <details class="product-accordion">
+            <summary>
+              <span>Product Details</span>
+              <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="accordion-content">
+              <div class="detail-item">
+                <strong>Material & Care:</strong>
+                <span id="material-care">100% Cotton. Machine wash cold, tumble dry low.</span>
+              </div>
+              <div class="detail-item">
+                <strong>Country of Origin:</strong>
+                <span id="country-origin">India</span>
+              </div>
+              <div class="detail-item">
+                <strong>Manufacturer:</strong>
+                <span id="manufacturer">Zylo Textiles Pvt. Ltd.</span>
+              </div>
+              <div class="detail-item">
+                <strong>Seller:</strong>
+                <span id="seller">Zylo Ecommerce</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="product-accordion">
+            <summary>
+              <span>Product Description</span>
+              <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="accordion-content">
+              <p id="product-description">This versatile piece combines comfort and style, perfect for both casual and semi-formal occasions. Made from premium quality fabric with attention to detail in every stitch.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Rating Section -->
+        <div id="rating-section"></div>
+        
+        <!-- Rating Input Section -->
+        <div id="rating-input-section"></div>
+
+      </div>
+    </section>
+
+    <!-- Related products -->
+    <section id="related" class="section-p1" aria-labelledby="related-heading">
+      <h2 id="related-heading">Related Products</h2>
+      <p>Customers also viewed</p>
+      <div id="related-container" class="pro-container"></div>
+    </section>
+  </main>
+
+  <!-- Newsletter (common) -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Sign up for the Newsletter</h4>
+      <p>Get the latest updates and offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer (common) -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+        <div class="row">
+          <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+            <img src="../img/pay/app.jpg" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noopener">
+            <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+          </a>
+        </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods">
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/cart-manager.js"></script>
+  <script src="../js/wishlist-manager.js"></script>
+  <script src="../js/rating.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/singlepro.js"></script>
+  <script>
+      // Initialize wishlist icons when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+          if (window.ZYLO && window.ZYLO.updateWishlistIcons) {
+              window.ZYLO.updateWishlistIcons();
+          }
+      });
+  </script>
+</body>
+</html>

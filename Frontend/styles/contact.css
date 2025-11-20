@@ -1,0 +1,205 @@
+/*
+  Zylo Ecommerce – contact.css
+  Styles for Frontend/contact.html, designed to align with common.css.
+*/
+
+/* Page header (Contact hero) */
+#page-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 16px;
+  margin: 12px 0;
+  border-radius: var(--radius-md);
+  color: var(--text);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+#page-header::before { content: none; }
+#page-header > * { position: relative; z-index: 1; }
+#page-header h1 { margin: 0 0 8px; font-size: clamp(2rem, 3.5vw + 0.5rem, 3rem); line-height: 1.2; font-weight: 700; }
+#page-header p  { margin: 0; opacity: 0.95; font-size: clamp(1rem, 1.2vw + 0.5rem, 1.2rem); }
+
+/* Contact methods */
+.contact-methods { margin-top: 8px; }
+.cm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.c-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.c-card i { font-size: 22px; color: var(--primary-700); }
+.c-card h3 { margin: 4px 0; font-size: 1.1rem; }
+.c-card p { margin: 0 0 8px; color: var(--muted); }
+.c-card .btn { width: fit-content; }
+
+/* Two-column layout */
+.contact-wrapper {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Form column */
+.form-col h2 { margin: 0 0 6px; font-size: clamp(1.5rem, 2.2vw + 0.5rem, 2rem); }
+.form-col .helper { margin: 0 0 16px; color: var(--muted); }
+.contact-form { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.form-grid { padding: 18px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.field { display: grid; gap: 6px; }
+.field.full { grid-column: 1 / -1; }
+label { font-weight: 700; font-size: 0.95rem; }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 0 0 0 rgba(37,99,235,0);
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary-600);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+textarea { resize: vertical; }
+
+/* Honeypot (hidden field) */
+.hp { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; opacity: 0 !important; }
+
+/* Consent and actions */
+.checkbox { display: inline-flex; align-items: center; gap: 10px; }
+.checkbox input { width: 18px; height: 18px; }
+.actions { display: flex; align-items: center; gap: 12px; }
+.actions .sla { margin: 0; color: var(--muted); }
+
+/* Info column */
+.info-col { display: grid; gap: 14px; }
+.info-card {
+  display: grid; grid-template-columns: 36px 1fr; gap: 12px;
+  align-items: start;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.info-card i { color: var(--primary-700); font-size: 20px; }
+.info-card h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.info-card p, .info-card address { margin: 0; color: var(--muted); font-style: normal; }
+.info-card.highlight { border-color: var(--primary-100); background: linear-gradient(180deg, #ffffff, #fafcff); }
+
+/* Tips */
+.tips { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 14px; box-shadow: var(--shadow-sm); }
+.tips summary { font-weight: 700; cursor: pointer; }
+.tips ul { margin: 8px 0 0; padding-left: 18px; list-style: disc; color: var(--muted); }
+
+/* Links & Buttons for anchors */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--primary-600); color: #fff; border: 1px solid transparent;
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  font-weight: 700; box-shadow: var(--shadow-sm);
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+}
+.btn:hover { background: var(--primary-700); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn.alt { background: #fff; color: var(--primary-700); border-color: var(--primary-100); }
+.btn.alt:hover { background: #f8fafc; }
+.link { color: var(--primary-700); font-weight: 700; text-decoration: underline; }
+
+/* Location */
+.location { margin-top: 36px; }
+.location h2 { margin: 0 0 12px; font-size: clamp(1.5rem, 2.2vw + 0.5rem, 2rem); }
+.location-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: start; }
+.map-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; }
+.map-card .map { position: relative; width: 100%; padding-top: 56.25%; }
+.map-card iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.map-note { margin: 8px 12px 12px; color: var(--muted); font-size: 0.9rem; }
+.loc-details { }
+.loc-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; box-shadow: var(--shadow-sm); }
+.loc-card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+.loc-card address { margin: 0 0 8px; color: var(--muted); font-style: normal; }
+.loc-list { margin: 0; padding-left: 0; list-style: none; color: var(--muted); }
+.loc-list li { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.loc-list i { color: var(--primary-700); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .contact-wrapper { grid-template-columns: 1fr; }
+  .location-grid { grid-template-columns: 1fr; }
+}
+/* Reset any search bar specificity issues */
+#navbar .search-container {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-right: 24px !important;
+  height: 38px !important;
+  padding: 0 10px 0 14px !important;
+  border: 1.25px solid #1f2937 !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+}
+
+#navbar .search-bar {
+  width: 260px !important;
+  height: 100% !important;
+  padding: 0 6px 0 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--text) !important;
+  font-size: 13px !important;
+  outline: none !important;
+  transition: box-shadow 0.2s ease !important;
+}
+
+#navbar .search-bar::placeholder { 
+  color: #6b7280 !important; 
+}
+
+#navbar .search-bar:focus { 
+  box-shadow: none !important; 
+}
+
+#navbar .search-icon {
+  position: static !important;
+  margin-left: 6px !important;
+  color: #1f2937 !important;
+  font-size: 16px !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 768px) {
+  #navbar .search-container {
+    margin-right: 12px !important;
+  }
+  
+  #navbar .search-bar {
+    width: 200px !important;
+  }
+}
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+  #navbar .search-container {
+    display: none !important;
+  }
+}
+

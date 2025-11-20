@@ -1,0 +1,2 @@
+This is a placeholder for the default product image.
+You can replace this with an actual default.jpg image file.

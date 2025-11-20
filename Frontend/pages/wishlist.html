@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist - Zylo Ecommerce</title>
+  <!-- Shared and page-specific styles -->
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/wishlist.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo"></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Page header -->
+  <section id="page-header" class="section-p1" aria-labelledby="wishlist-heading" role="region">
+    <h1 id="wishlist-heading">My Wishlist</h1>
+    <p>Keep track of your favorite items</p>
+  </section>
+
+  <main id="content" class="section-p1">
+    <!-- Wishlist content -->
+    <section class="wishlist-section">
+      <div class="wishlist-header">
+        <h2>Saved Items</h2>
+        <div class="wishlist-actions">
+          <span id="wishlist-count" class="item-count">0 items</span>
+          <button id="clear-wishlist" class="btn-clear" title="Clear all items">
+            <i class="fas fa-trash"></i> Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- Empty wishlist state -->
+      <div id="empty-wishlist" class="empty-state">
+        <div class="empty-icon">
+          <i class="far fa-heart"></i>
+        </div>
+        <h3>Your wishlist is empty</h3>
+        <p>Save items you love by clicking the heart icon on any product</p>
+        <a href="shop.html" class="btn">Start Shopping</a>
+      </div>
+
+      <!-- Wishlist items container -->
+      <div id="wishlist-items" class="wishlist-container">
+        <!-- Wishlist items will be populated here by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Related suggestions removed as per requirements -->
+  </main>
+
+  <!-- Newsletter (common) -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Sign up for the Newsletter</h4>
+      <p>Get the latest updates and offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer (common) -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+        <div class="row">
+          <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+            <img src="../img/pay/app.jpg" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noopener">
+            <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+          </a>
+        </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods">
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/wishlist-manager.js"></script>
+  <script src="../js/wishlist.js"></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout - Zylo Ecommerce</title>
+  <!-- Shared and page-specific styles -->
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/checkout.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo"></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Page header -->
+  <section id="page-header" class="section-p1" aria-labelledby="checkout-heading" role="region">
+    <h1 id="checkout-heading">Secure Checkout</h1>
+    <p>Complete your purchase securely</p>
+  </section>
+
+  <main id="content" class="section-p1">
+    <div class="checkout-layout">
+      <!-- Left Side: Payment Navigation and Content -->
+      <div class="payment-section">
+        <div class="payment-nav-layout">
+          <!-- Vertical Payment Navigation -->
+          <div class="payment-nav">
+            <h3>Payment Method</h3>
+            <ul class="payment-menu">
+              <li>
+                <button class="nav-btn active" data-tab="card">
+                  <i class="fas fa-credit-card"></i>
+                  <span>Debit/Credit Card</span>
+                  <i class="fas fa-chevron-right arrow"></i>
+                </button>
+              </li>
+              <li>
+                <button class="nav-btn" data-tab="wallet">
+                  <i class="fas fa-wallet"></i>
+                  <span>Wallet</span>
+                  <i class="fas fa-chevron-right arrow"></i>
+                </button>
+              </li>
+              <li>
+                <button class="nav-btn" data-tab="upi">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span>UPI</span>
+                  <i class="fas fa-chevron-right arrow"></i>
+                </button>
+              </li>
+              <li>
+                <button class="nav-btn" data-tab="netbanking">
+                  <i class="fas fa-university"></i>
+                  <span>Net Banking</span>
+                  <i class="fas fa-chevron-right arrow"></i>
+                </button>
+              </li>
+              <li>
+                <button class="nav-btn" data-tab="cod">
+                  <i class="fas fa-money-bill-wave"></i>
+                  <span>Cash on Delivery</span>
+                  <i class="fas fa-chevron-right arrow"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Payment Content Area -->
+          <div class="payment-content-area">
+            <!-- Card Payment -->
+            <div id="card-content" class="tab-content active">
+              <h3>Card Details</h3>
+              <form class="payment-form">
+                <div class="form-group">
+                  <label for="card-number">Card Number</label>
+                  <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                  <div class="card-icons">
+                    <img src="../img/pay/visa.jpg" alt="Visa">
+                    <img src="../img/pay/mastercard.jpg" alt="Mastercard">
+                    <img src="../img/pay/rupay.jpg" alt="RuPay">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                  </div>
+                  <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="4">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="cardholder-name">Cardholder Name</label>
+                  <input type="text" id="cardholder-name" placeholder="Name as on card">
+                </div>
+                <div class="checkbox-group">
+                  <input type="checkbox" id="save-card">
+                  <label for="save-card">Save this card for future purchases</label>
+                </div>
+              </form>
+            </div>
+
+            <!-- Wallet Payment -->
+            <div id="wallet-content" class="tab-content">
+              <h3>Select Wallet</h3>
+              <div class="wallet-options">
+                <div class="wallet-option" data-wallet="paytm">
+                  <img src="../img/pay/paytm.jpg" alt="Paytm">
+                  <span>Paytm</span>
+                </div>
+                <div class="wallet-option" data-wallet="phonepe">
+                  <img src="../img/pay/phonepe.jpg" alt="PhonePe">
+                  <span>PhonePe</span>
+                </div>
+                <div class="wallet-option" data-wallet="mobikwik">
+                  <img src="../img/pay/mobikwik.jpg" alt="Mobikwik">
+                  <span>Mobikwik</span>
+                </div>
+                <div class="wallet-option" data-wallet="freecharge">
+                  <img src="../img/pay/freecharge.jpg" alt="Freecharge">
+                  <span>Freecharge</span>
+                </div>
+                <div class="wallet-option" data-wallet="zylo">
+                  <img src="../img/logo.jpg" alt="Zylo Wallet">
+                  <span>Zylo Wallet</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- UPI Payment -->
+            <div id="upi-content" class="tab-content">
+              <h3>UPI Payment</h3>
+              <form class="payment-form">
+                <div class="form-group">
+                  <label for="upi-id">UPI ID</label>
+                  <input type="text" id="upi-id" placeholder="yourname@paytm">
+                </div>
+                <div class="upi-apps">
+                  <div class="upi-app" data-app="phonepe">
+                    <img src="../img/pay/phonepe.jpg" alt="PhonePe">
+                    <span>PhonePe</span>
+                  </div>
+                  <div class="upi-app" data-app="gpay">
+                    <img src="../img/pay/gpay.jpg" alt="Google Pay">
+                    <span>Google Pay</span>
+                  </div>
+                  <div class="upi-app" data-app="paytm">
+                    <img src="../img/pay/paytm.jpg" alt="Paytm">
+                    <span>Paytm</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Net Banking -->
+            <div id="netbanking-content" class="tab-content">
+              <h3>Select Your Bank</h3>
+              <div class="bank-grid">
+                <div class="bank-option" data-bank="sbi">
+                  <img src="../img/pay/sbi.jpg" alt="SBI">
+                  <span>State Bank of India</span>
+                </div>
+                <div class="bank-option" data-bank="hdfc">
+                  <img src="../img/pay/hdfc.jpg" alt="HDFC">
+                  <span>HDFC Bank</span>
+                </div>
+                <div class="bank-option" data-bank="icici">
+                  <img src="../img/pay/icici.jpg" alt="ICICI">
+                  <span>ICICI Bank</span>
+                </div>
+                <div class="bank-option" data-bank="axis">
+                  <img src="../img/pay/axis.jpg" alt="Axis">
+                  <span>Axis Bank</span>
+                </div>
+                <div class="bank-option" data-bank="kotak">
+                  <img src="../img/pay/kotak.jpg" alt="Kotak">
+                  <span>Kotak Mahindra</span>
+                </div>
+                <div class="bank-option" data-bank="pnb">
+                  <img src="../img/pay/pnb.jpg" alt="PNB">
+                  <span>Punjab National Bank</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cash on Delivery -->
+            <div id="cod-content" class="tab-content">
+              <h3>Cash on Delivery</h3>
+              <div class="cod-info">
+                <div class="cod-icon">
+                  <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="cod-details">
+                  <h4>Pay with Cash</h4>
+                  <p>Pay conveniently with cash when your order is delivered to your doorstep.</p>
+                  <ul class="cod-features">
+                    <li><i class="fas fa-check"></i> No online payment required</li>
+                    <li><i class="fas fa-check"></i> Pay after receiving your order</li>
+                    <li><i class="fas fa-check"></i> Additional charges may apply</li>
+                  </ul>
+                  <div class="cod-charge">
+                    <span>COD Charges: Rs. 49</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Order Summary -->
+      <aside class="order-summary">
+        <!-- Delivery Section -->
+        <div class="delivery-section">
+          <div class="delivery-header">
+            <h3>
+              Delivering order to <span id="customer-name">John Doe</span>
+            </h3>
+            <button class="change-btn">CHANGE</button>
+          </div>
+          <div class="delivery-address" id="delivery-address">
+            <p class="recipient-name">John Doe</p>
+            <p class="address">
+              123, MG Road, Near Central Mall<br>
+              Bangalore, Karnataka - 560001<br>
+              Phone: +91 98765 43210
+            </p>
+          </div>
+        </div>
+
+        <!-- Items Section -->
+        <div class="items-section">
+          <div class="items-header" onclick="toggleItems()">
+            <h3>Item (<span id="items-count">1</span>)</h3>
+            <i class="fas fa-chevron-down toggle-icon" id="items-toggle"></i>
+          </div>
+          <div class="items-content" id="items-content">
+            <!-- Items will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Price Summary -->
+        <div class="price-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="summary-subtotal">Rs. 0</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span id="summary-shipping">Free</span>
+          </div>
+          <div class="summary-row">
+            <span>Tax (GST)</span>
+            <span id="summary-tax">Rs. 0</span>
+          </div>
+          <div class="summary-row coupon-discount" id="coupon-discount-row" style="display: none;">
+            <span>Coupon Discount (<span id="coupon-code-display"></span>)</span>
+            <span id="coupon-discount-amount" class="discount-amount">-Rs. 0</span>
+          </div>
+          <div class="summary-row cod-charges" id="cod-charges-row" style="display: none;">
+            <span>COD Charges</span>
+            <span>Rs. 49</span>
+          </div>
+          <hr>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="summary-total">Rs. 0</span>
+          </div>
+        </div>
+
+        <!-- Payment Button -->
+        <button id="place-order-btn" class="btn-place-order">
+          <i class="fas fa-lock"></i>
+          Place Order
+        </button>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Newsletter (common) -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Sign up for the Newsletter</h4>
+      <p>Get the latest updates and offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer (common) -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+        <div class="row">
+          <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+            <img src="../img/pay/app.jpg" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noopener">
+            <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+          </a>
+        </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods">
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/checkout.js"></script>
+</body>
+</html>

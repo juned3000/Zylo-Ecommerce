@@ -1,0 +1,102 @@
+/* Payment gateway (simulated) */
+.gateway-layout {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.pg-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+}
+
+.pg-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pg-header i { color: var(--primary-600); font-size: 20px; }
+.pg-header h2 { margin: 0; }
+
+.pg-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+
+.pg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.pg-content {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  background: #ffffff;
+}
+
+.pg-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pg-actions .primary { background: #16a34a; }
+.pg-actions .primary:hover { background: #15803d; }
+.pg-actions .danger { background: #ef4444; }
+.pg-actions .danger:hover { background: #dc2626; }
+.pg-actions .secondary { background: #475569; }
+.pg-actions .secondary:hover { background: #334155; }
+
+.tip { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+/* OTP input for card */
+.otp-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.otp-row input {
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  font-size: 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+}
+
+.otp-row input:focus {
+  border-color: var(--primary-600);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+/* UPI box */
+.upi-box {
+  display: grid;
+  gap: 8px;
+}
+.upi-box .row { display: flex; align-items: center; gap: 8px; }
+.upi-badge { padding: 2px 8px; border: 1px solid #22c55e; color: #16a34a; border-radius: 999px; font-size: 12px; }
+
+/* QR placeholder */
+.qr {
+  width: 160px; height: 160px; border: 2px dashed var(--border); border-radius: 12px;
+  background: repeating-linear-gradient(45deg, #f1f5f9, #f1f5f9 10px, #eef2f7 10px, #eef2f7 20px);
+}
+

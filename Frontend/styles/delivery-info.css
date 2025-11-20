@@ -1,0 +1,627 @@
+/* Delivery Information Page - Full Width Simple Layout */
+
+:root {
+  --delivery-primary: #2563eb;
+  --delivery-secondary: #10b981;
+  --delivery-accent: #f59e0b;
+  --delivery-bg: #f8fafc;
+  --delivery-section-bg: #ffffff;
+  --delivery-border: #e5e7eb;
+}
+
+/* Page Header */
+#page-header {
+  background: var(--delivery-primary);
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+#page-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+#page-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Main Content */
+.legal-content {
+  background: var(--delivery-bg);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* Center all page contents within a consistent width */
+.legal-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Overview Section */
+.delivery-overview {
+  background: var(--delivery-section-bg);
+  padding: 3rem 2rem;
+  border-bottom: 1px solid var(--delivery-border);
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Responsive: stack at smaller widths */
+@media (max-width: 1024px) {
+  .overview-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
+.overview-card {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.overview-card i {
+  font-size: 3rem;
+  color: var(--delivery-primary);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.overview-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.overview-card p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Delivery Sections */
+.delivery-section {
+  background: var(--delivery-section-bg);
+  padding: 3rem 2rem;
+  border-bottom: 1px solid var(--delivery-border);
+}
+
+.delivery-section:nth-child(even) {
+  background: var(--delivery-bg);
+}
+
+.delivery-section > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.delivery-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.delivery-section h2 i {
+  color: var(--delivery-primary);
+  font-size: 1.75rem;
+}
+
+/* Shipping Table */
+.shipping-table {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.shipping-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shipping-table th,
+.shipping-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--delivery-border);
+}
+
+.shipping-table th {
+  background: var(--delivery-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.shipping-table tr:hover {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.shipping-table .highlight {
+  background: rgba(37, 99, 235, 0.08);
+  border-left: 4px solid var(--delivery-primary);
+}
+
+.shipping-table .highlight strong {
+  color: var(--delivery-secondary);
+  font-weight: 600;
+}
+
+/* Timeline Grid */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.timeline-card {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+}
+
+.timeline-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.timeline-icon.standard {
+  background: var(--delivery-primary);
+}
+
+.timeline-icon.express {
+  background: var(--delivery-secondary);
+}
+
+.timeline-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.timeline-details p {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+}
+
+.timeline-details strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cities-served {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(37, 99, 235, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--delivery-primary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.cities-served strong {
+  color: var(--delivery-primary);
+}
+
+/* Delivery Note */
+.delivery-note {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.delivery-note i {
+  color: var(--delivery-accent);
+  font-size: 1.25rem;
+  margin-top: 0.125rem;
+}
+
+.delivery-note p {
+  margin: 0;
+  color: #92400e;
+}
+
+/* Coverage Stats */
+.coverage-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.stat {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+}
+
+.stat .number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--delivery-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat .label {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* Coverage Details */
+.coverage-details {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.coverage-details h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.coverage-list {
+  list-style: none;
+  padding: 0;
+}
+
+.coverage-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--delivery-border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+}
+
+.coverage-list li:last-child {
+  border-bottom: none;
+}
+
+.coverage-list li::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--delivery-secondary);
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.coverage-list strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* PIN Code Checker */
+.pincode-checker {
+  background: var(--delivery-primary);
+  color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.pincode-checker h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.pincode-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.pincode-form input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+.pincode-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background: white;
+  color: var(--delivery-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Process Timeline */
+.process-timeline {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.process-step {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--delivery-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.step-content p {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Partners Grid */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.partner-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.partner-logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--delivery-primary);
+}
+
+.partner-card p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Info Cards */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+  padding: 2rem;
+  border-left: 4px solid var(--delivery-primary);
+}
+
+.info-card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-card h4 i {
+  color: var(--delivery-primary);
+}
+
+.info-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-card li {
+  padding: 0.5rem 0;
+  color: var(--muted);
+  line-height: 1.5;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.info-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--delivery-primary);
+  font-weight: 600;
+}
+
+/* Help Options */
+.help-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.help-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--delivery-border);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.help-card i {
+  font-size: 2.5rem;
+  color: var(--delivery-primary);
+  margin-bottom: 1rem;
+}
+
+.help-card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.help-card p {
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.help-card strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.btn-link {
+  display: inline-block;
+  background: var(--delivery-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Help section: make Track Now a plain link (no button background) */
+.help-card .btn-link {
+  background: transparent;
+  color: var(--delivery-primary);
+  padding: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  display: inline;
+}
+.help-card .btn-link:hover {
+  background: transparent;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .delivery-section {
+    padding: 2rem 1rem;
+  }
+  
+  .delivery-overview {
+    padding: 2rem 1rem;
+  }
+  
+  #page-header {
+    padding: 2rem 1rem;
+  }
+  
+  #page-header h1 {
+    font-size: 2rem;
+  }
+  
+  .overview-grid,
+  .timeline-grid,
+  .coverage-stats,
+  .info-cards,
+  .partners-grid,
+  .help-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .overview-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .delivery-section h2 {
+    font-size: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .process-step {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .pincode-form {
+    flex-direction: column;
+    max-width: 250px;
+  }
+}

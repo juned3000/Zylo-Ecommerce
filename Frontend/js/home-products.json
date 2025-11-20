@@ -1,0 +1,203 @@
+[
+  {
+    "id": "f1",
+    "name": "Abstract Summer Shirt",
+    "brand": "Nike",
+    "price": 1299,
+    "image": "../img/products/f1.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Comfortable cotton shirt with abstract print design, perfect for summer wear."
+  },
+  {
+    "id": "f2",
+    "name": "Tropical Leaf Shirt",
+    "brand": "H&M",
+    "price": 1199,
+    "image": "../img/products/f2.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Light and breezy shirt featuring tropical leaf patterns."
+  },
+  {
+    "id": "f3",
+    "name": "Floral Paradise Shirt",
+    "brand": "Zara",
+    "price": 1499,
+    "image": "../img/products/f3.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Elegant floral design shirt made from premium fabric."
+  },
+  {
+    "id": "f4",
+    "name": "Cherry Blossom Shirt",
+    "brand": "Levi's",
+    "price": 1099,
+    "image": "../img/products/f4.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Classic denim brand's take on floral fashion with cherry blossom prints."
+  },
+  {
+    "id": "f5",
+    "name": "Midnight Bloom Shirt",
+    "brand": "Tommy Hilfiger",
+    "price": 1399,
+    "image": "../img/products/f5.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Dark themed floral shirt perfect for evening occasions."
+  },
+  {
+    "id": "f6",
+    "name": "Dual-Tone Casual Shirt",
+    "brand": "Uniqlo",
+    "price": 1249,
+    "image": "../img/products/f6.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Modern dual-tone design for a contemporary casual look."
+  },
+  {
+    "id": "f7",
+    "name": "Black Oversized T-Shirt",
+    "brand": "Gucci",
+    "price": 2499,
+    "image": "../img/products/f7.jpg",
+    "sizes": ["M", "L", "XL"],
+    "category": "tshirt",
+    "description": "Luxury oversized t-shirt from premium designer brand."
+  },
+  {
+    "id": "f8",
+    "name": "Lavender Print Loose Top",
+    "brand": "Forever 21",
+    "price": 999,
+    "image": "../img/products/f8.jpg",
+    "sizes": ["S", "M", "L"],
+    "category": "tops",
+    "description": "Relaxed fit top with beautiful lavender print."
+  },
+  {
+    "id": "f9",
+    "name": "Beige Designer Shirt",
+    "brand": "Prada",
+    "price": 2199,
+    "image": "../img/products/f9.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Sophisticated beige shirt from luxury Italian fashion house."
+  },
+  {
+    "id": "f10",
+    "name": "Grey Knitted Sweater",
+    "brand": "Mango",
+    "price": 1799,
+    "image": "../img/products/f10.jpg",
+    "sizes": ["M", "L", "XL"],
+    "category": "sweaters",
+    "description": "Warm and comfortable knitted sweater for cooler weather."
+  },
+  {
+    "id": "n1",
+    "name": "Sky Blue Casual Shirt",
+    "brand": "Uniqlo",
+    "price": 1199,
+    "image": "../img/products/n1.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Fresh sky blue casual shirt perfect for daily wear."
+  },
+  {
+    "id": "n2",
+    "name": "Checkered Slim Shirt",
+    "brand": "H&M",
+    "price": 1299,
+    "image": "../img/products/n2.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Classic checkered pattern in a modern slim fit."
+  },
+  {
+    "id": "n3",
+    "name": "White Linen Shirt",
+    "brand": "Zara",
+    "price": 1499,
+    "image": "../img/products/n3.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Premium white linen shirt for sophisticated summer style."
+  },
+  {
+    "id": "n4",
+    "name": "Beige Patterned Shirt",
+    "brand": "Levi's",
+    "price": 1599,
+    "image": "../img/products/n4.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Stylish beige shirt with subtle pattern detailing."
+  },
+  {
+    "id": "n5",
+    "name": "Denim Casual Shirt",
+    "brand": "Tommy Hilfiger",
+    "price": 1799,
+    "image": "../img/products/n5.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Classic denim shirt from American heritage brand."
+  },
+  {
+    "id": "n6",
+    "name": "Striped Summer Shorts",
+    "brand": "Gap",
+    "price": 999,
+    "image": "../img/products/n6.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shorts",
+    "description": "Comfortable striped shorts perfect for summer activities."
+  },
+  {
+    "id": "n7",
+    "name": "Brown Safari Jacket",
+    "brand": "Mango",
+    "price": 2299,
+    "image": "../img/products/n7.jpg",
+    "sizes": ["M", "L", "XL"],
+    "category": "jackets",
+    "description": "Adventure-ready safari jacket in rich brown color."
+  },
+  {
+    "id": "n8",
+    "name": "Black Relaxed Shirt",
+    "brand": "Calvin Klein",
+    "price": 1499,
+    "image": "../img/products/n8.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "category": "shirts",
+    "description": "Comfortable relaxed fit shirt in classic black."
+  },
+  {
+    "id": "n9",
+    "name": "Blue Denim Jacket",
+    "brand": "Diesel",
+    "price": 2799,
+    "image": "../img/products/n9.jpg",
+    "sizes": ["M", "L", "XL"],
+    "category": "jackets",
+    "description": "Premium denim jacket from Italian designer brand."
+  },
+  {
+    "id": "n10",
+    "name": "Light Blue Denim Jeans",
+    "brand": "Levi's",
+    "price": 2199,
+    "image": "../img/products/n10.jpg",
+    "sizes": ["30", "32", "34", "36"],
+    "category": "jeans",
+    "description": "Classic light blue denim jeans from the original denim brand."
+  }
+]
+

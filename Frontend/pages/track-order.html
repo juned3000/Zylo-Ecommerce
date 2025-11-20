@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track My Order - Zylo</title>
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/order.css">
+  <link rel="stylesheet" href="../styles/track-order.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+<body>
+  <!-- Header / Navbar (common) -->
+  <section id="header">
+    <a href="index.html"><img src="../img/logo.jpg" alt="Zylo"></a>
+    <div>
+      <ul id="navbar">
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="What are you looking for?">
+          <i class="fas fa-search search-icon"></i>
+        </li>
+        <li><a href="login.html" title="Account"><i class="far fa-user"></i></a></li>
+        <li><a href="wishlist.html" title="Wishlist"><i class="far fa-heart"></i></a></li>
+        <li><a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Page header -->
+  <section id="page-header" class="section-p1" role="region" aria-labelledby="track-heading">
+    <h1 id="track-heading">Track Your Order</h1>
+    <p>Enter your order details to get real-time updates</p>
+  </section>
+
+  <main class="section-p1">
+    <div class="track-layout">
+      <!-- Order Tracking Form -->
+      <div class="track-form-card">
+        <div class="form-header">
+          <i class="fas fa-search"></i>
+          <h2>Enter Order Details</h2>
+          <p>Track your order using your Order ID and registered email address</p>
+        </div>
+
+        <form id="track-form" class="track-form">
+          <div class="form-group">
+            <label for="order-id">Order ID</label>
+            <input type="text" id="order-id" placeholder="e.g., ZY123456" required>
+            <small>You can find your Order ID in your confirmation email</small>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your registered email" required>
+          </div>
+          
+          <button type="submit" class="btn-track">
+            <i class="fas fa-search"></i>
+            Track Order
+          </button>
+        </form>
+      </div>
+
+      <!-- Order Status Display (Hidden by default) -->
+      <div id="order-status" class="order-status-card" style="display: none;">
+        <div class="status-header">
+          <div class="header-left">
+            <h3>Order Status</h3>
+            <div class="order-info">
+              <span class="order-id">Order #<span id="display-order-id"></span></span>
+              <span class="order-date" id="display-order-date"></span>
+            </div>
+          </div>
+          <div class="header-right">
+            <button id="refresh-tracking" class="btn-refresh" title="Refresh tracking data">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+          <div class="progress-step completed" data-step="1">
+            <div class="step-icon">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="step-info">
+              <h4>Order Confirmed</h4>
+              <p class="step-time" id="confirmed-time">Jan 8, 2025 - 10:30 AM</p>
+            </div>
+          </div>
+
+          <div class="progress-step completed" data-step="2">
+            <div class="step-icon">
+              <i class="fas fa-box"></i>
+            </div>
+            <div class="step-info">
+              <h4>Order Packed</h4>
+              <p class="step-time" id="packed-time">Jan 8, 2025 - 2:15 PM</p>
+            </div>
+          </div>
+
+          <div class="progress-step active" data-step="3">
+            <div class="step-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <div class="step-info">
+              <h4>In Transit</h4>
+              <p class="step-time" id="transit-time">Jan 9, 2025 - 9:00 AM</p>
+            </div>
+          </div>
+
+          <div class="progress-step" data-step="4">
+            <div class="step-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <div class="step-info">
+              <h4>Delivered</h4>
+              <p class="step-time" id="delivered-time">Expected: Jan 10, 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping Details -->
+        <div class="shipping-details">
+          <div class="detail-section">
+            <h4><i class="fas fa-truck"></i> Shipping Details</h4>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Carrier:</span>
+                <span class="value" id="carrier">BlueDart Express</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Tracking ID:</span>
+                <span class="value" id="tracking-id">BD1234567890</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Expected Delivery:</span>
+                <span class="value" id="expected-delivery">Tomorrow, Jan 10, 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h4><i class="fas fa-map-marker-alt"></i> Delivery Address</h4>
+            <div class="address-info" id="delivery-address">
+              <p><strong>John Doe</strong></p>
+              <p>123 MG Road, Near Central Mall<br>
+                 Bangalore, Karnataka - 560001<br>
+                 Phone: +91 98765 43210</p>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h4><i class="fas fa-shopping-bag"></i> Order Items</h4>
+            <div class="order-items" id="order-items">
+              <!-- Items will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="track-actions">
+          <button class="btn-secondary" onclick="window.print()">
+            <i class="fas fa-print"></i>
+            Print Details
+          </button>
+          <a href="contact.html" class="btn-secondary">
+            <i class="fas fa-headset"></i>
+            Need Help?
+          </a>
+          <button class="btn-primary" id="track-another">
+            <i class="fas fa-search"></i>
+            Track Another Order
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <h3>Quick Actions</h3>
+        <div class="action-grid">
+          <a href="account.html" class="action-card">
+            <i class="fas fa-user"></i>
+            <span>My Account</span>
+            <p>View all your orders</p>
+          </a>
+          <a href="contact.html" class="action-card">
+            <i class="fas fa-headset"></i>
+            <span>Support</span>
+            <p>Get help with your order</p>
+          </a>
+          <a href="shop.html" class="action-card">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Continue Shopping</span>
+            <p>Explore our products</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Newsletter (common) -->
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Sign up for the Newsletter</h4>
+      <p>Get the latest updates and offers.</p>
+    </div>
+    <div class="form">
+      <input type="email" placeholder="Enter your email">
+      <button>Subscribe</button>
+    </div>
+  </section>
+
+  <!-- Footer (common) -->
+  <footer class="section-p1">
+    <div class="col">
+      <h4>Contact</h4>
+      <p><strong>Address:</strong> 3rd Lane, Brodipet, Guntur, Andhra Pradesh 522002</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+      <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>About</h4>
+      <a href="about.html">About us</a>
+      <a href="delivery-info.html">Delivery Information</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms & Conditions</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="col">
+      <h4>My Account</h4>
+      <a href="login.html">Sign In</a>
+      <a href="cart.html">View Cart</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="track-order.html">Track My Order</a>
+      <a href="contact.html">Help</a>
+    </div>
+
+    <div class="col install">
+      <h4>Install App</h4>
+      <p>From App Store or Google Play</p>
+        <div class="row">
+          <a href="https://apps.apple.com/" target="_blank" rel="noopener">
+            <img src="../img/pay/app.jpg" alt="Download on the App Store">
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noopener">
+            <img src="../img/pay/play.jpg" alt="Get it on Google Play">
+          </a>
+        </div>
+      <p>Secured Payment Gateways</p>
+      <img src="../img/pay/pay.png" alt="Payment methods">
+    </div>
+
+    <div class="copyright">
+      <p>© 2025 Zylo — Crafted with care. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/track-order.js"></script>
+</body>
+</html>
